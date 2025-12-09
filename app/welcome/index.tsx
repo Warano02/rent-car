@@ -1,9 +1,11 @@
 import assets from "@/assets";
+import { useApp } from "@/lib/hooks/useApp";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, ImageBackground, Pressable, Text, View } from "react-native";
 
 const Index = () => {
+  const {AppName}=useApp()
   const { logo, overlayBg, whiteCar } = assets;
   const router = useRouter()
   return (
@@ -15,7 +17,7 @@ const Index = () => {
           </View>
           <View className="mt-8">
             <Text className="text-white text-[40px] font-semibold">Welcome to</Text>
-            <Text className="text-white text-[40px] font-semibold">Qent</Text>
+            <Text className="text-white text-[40px] font-semibold">{AppName} </Text>
           </View>
         </View>
         <Pressable onPress={() => router.push("./welcome/welcome")} className="bg-button rounded-full items-center justify-center p-6 mb-8">
