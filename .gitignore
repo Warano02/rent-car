@@ -2,7 +2,6 @@
 
 # dependencies
 node_modules/
-package-lock.json
 
 # Expo
 .expo/
@@ -33,7 +32,6 @@ yarn-error.*
 
 # local env files
 .env*.local
-.vsc
 
 # typescript
 *.tsbuildinfo
