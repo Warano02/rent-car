@@ -1,5 +1,6 @@
 //Login page 
 import assets from '@/assets';
+import { Button } from '@/components/ui/button';
 import { useApp } from '@/lib/hooks/useApp';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Link, useRouter } from 'expo-router';
@@ -9,7 +10,10 @@ const Login = () => {
   const { logo_black, eye } = assets;
   const { AppName } = useApp()
   const [checked, setChecked] = useState(false);
+  const [isSecure, setIsSecure] = useState(true);
+  
   const router = useRouter()
+
   return (
     <ScrollView className='flex-1 px-6 pt-8'>
       <View className='flex-row gap-4 items-center'>
@@ -26,8 +30,8 @@ const Login = () => {
           <TextInput placeholder='Email/Phone number' className='font-semibold text-xl flex-1' />
         </View>
         <View className='border border-border bg-background mt-4 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
-          <TextInput className='font-semibold text-2xl flex-1' />
-          <Pressable>
+          <TextInput className='font-semibold text-2xl flex-1' secureTextEntry={isSecure} />
+          <Pressable onPress={() => setIsSecure((prev) => !prev)}>
             <Image source={eye} resizeMode="contain" className='h-8 w-8' />
           </Pressable>
         </View>
@@ -39,7 +43,7 @@ const Login = () => {
             onPress={() => setChecked(!checked)}
             className='bg-checkBoxBg h-7 w-7 rounded-lg'>
             {checked && (
-              <MaterialIcons name="check" size={22} color="white" />
+              <MaterialIcons name="check" size={26} color="white" />
             )}
           </Pressable>
           <Text className='text-[15px] text-black '>Remember Me</Text>
@@ -47,19 +51,29 @@ const Login = () => {
         <Link href={"./auth/forgotPassword"} className='text-[15px] text-black'>Forgot Password</Link>
       </View>
 
-      <Pressable onPress={() => router.push("./auth/signup")} className="bg-button rounded-full items-center justify-center p-6 mb-8">
-        <Text className="text-white font-semibold text-xl">
-          Log In
-        </Text>
-      </Pressable>
+      <View className='mb-6 gap-2'>
+        <Button className="bg-button rounded-full items-center justify-center p-6">
+          <Text className="text-white font-semibold text-xl">
+            Log In
+          </Text>
+        </Button>
+        <Button onPress={() => router.push("/auth/signup")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-6">
+          <Text className="text-black  font-semibold text-xl">
+            Sign Up
+          </Text>
+        </Button>
+
+      </View>
+
 
       <View className='flex-row items-center justify-between'>
-        <View className='h-1 flex-1 bg-divider my-3'/>
+        <View className='h-1 flex-1 bg-divider my-3' />
         <Text className='text-[12px] text-center w-6 font-semibold text-placeholder'>Or</Text>
-        <View className='h-1 flex-1 bg-divider my-3'/>
+        <View className='h-1 flex-1 bg-divider my-3' />
       </View>
     </ScrollView>
   )
 }
+
 
 export default Login
