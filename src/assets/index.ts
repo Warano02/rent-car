@@ -9,6 +9,7 @@ const assets = {
   tesla: require('./images/tesla.png'),
   ferrari: require('./images/ferrari.png'),
   success: require('./images/success.png'),
+  sapjasha:require("./images/android-chrome-192x192.png")
 };
 
 export default assets;

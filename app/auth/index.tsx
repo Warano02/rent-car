@@ -1,5 +1,6 @@
 //Login page 
 import assets from '@/assets';
+import Socials from '@/components/auth/Socials';
 import { Button } from '@/components/ui/button';
 import { useApp } from '@/lib/hooks/useApp';
 import { MaterialIcons } from "@expo/vector-icons";
@@ -11,25 +12,25 @@ const Login = () => {
   const { AppName } = useApp()
   const [checked, setChecked] = useState(false);
   const [isSecure, setIsSecure] = useState(true);
-  
+
   const router = useRouter()
 
   return (
     <ScrollView className='flex-1 px-6 pt-8'>
       <View className='flex-row gap-4 items-center'>
-        <Image source={logo_black} className='h-16 w-16' />
+        <Image source={logo_black} className='h-16 w-16 ' />
         <Text className='text-4xl font-bold text-black'>{AppName} </Text>
       </View>
-      <View className='my-16'>
+      <View className='my-4'>
         <Text className='text-black text-3xl font-semibold'>Welcome Back</Text>
         <Text className='text-black text-3xl font-semibold'>Ready to hit the road.</Text>
       </View>
 
-      <View className='gap-8'>
-        <View className='border border-border bg-background px-2 mt-4 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
+      <View className='gap-2'>
+        <View className='border border-border bg-background px-2 mt-2 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
           <TextInput placeholder='Email/Phone number' className='font-semibold text-xl flex-1' />
         </View>
-        <View className='border border-border bg-background mt-4 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
+        <View className='border border-border bg-background mt-2 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
           <TextInput className='font-semibold text-2xl flex-1' secureTextEntry={isSecure} />
           <Pressable onPress={() => setIsSecure((prev) => !prev)}>
             <Image source={eye} resizeMode="contain" className='h-8 w-8' />
@@ -37,7 +38,7 @@ const Login = () => {
         </View>
       </View>
 
-      <View className='flex-row justify-between items-center my-6'>
+      <View className='flex-row justify-between items-center my-4'>
         <View className='flex-row gap-2'>
           <Pressable
             onPress={() => setChecked(!checked)}
@@ -51,13 +52,14 @@ const Login = () => {
         <Link href={"./auth/forgotPassword"} className='text-[15px] text-black'>Forgot Password</Link>
       </View>
 
+      {/* List of pressable to controol form */}
       <View className='mb-6 gap-2'>
-        <Button className="bg-button rounded-full items-center justify-center p-6">
+        <Button className="bg-button rounded-full items-center justify-center p-4">
           <Text className="text-white font-semibold text-xl">
             Log In
           </Text>
         </Button>
-        <Button onPress={() => router.push("/auth/signup")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-6">
+        <Button onPress={() => router.push("/auth/signup")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-4">
           <Text className="text-black  font-semibold text-xl">
             Sign Up
           </Text>
@@ -65,12 +67,13 @@ const Login = () => {
 
       </View>
 
-
       <View className='flex-row items-center justify-between'>
         <View className='h-1 flex-1 bg-divider my-3' />
         <Text className='text-[12px] text-center w-6 font-semibold text-placeholder'>Or</Text>
         <View className='h-1 flex-1 bg-divider my-3' />
       </View>
+
+      <Socials action="Login" />
     </ScrollView>
   )
 }
