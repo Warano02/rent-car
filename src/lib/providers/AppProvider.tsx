@@ -1,14 +1,17 @@
-import React, { createContext } from "react";
+import { IAppProviders } from "@/types";
+import React, { createContext, useState } from "react";
 
-interface AppContextType {
-    AppName: string
-}
+const notifs = [
+    { title: "Account Activate", containt: "Your account has been activate successfully !", isRead: false }
+]
 
-export const AppContext = createContext<AppContextType | null>(null);
+export const AppContext = createContext<IAppProviders | null>(null);
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const AppName = "Qent"
-    const value = { AppName }
+    const [notifications, setNotifications] = useState(notifs)
+    
+    const value = { AppName,notifications }
     return (
         <AppContext.Provider value={value}>
             {children}

@@ -4,6 +4,7 @@ type User = {
     id: string;
     name: string;
     email: string;
+    profil:string|undefined
 };
 
 type AuthContextType = {
@@ -25,7 +26,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     async function restoreSession() {
         try {
-
+            setUser({
+                id: "123",
+                name: "Warano",
+                email: "carineteoi@gmail.com",
+                profil:"https://i.ibb.co/rKbXNwg5/Chat-GPT-Image-Jul-24-2025-09-26-56-AM.png"
+            })
         } finally {
             setLoading(false);
         }
@@ -36,6 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             id: "1",
             name: "Felix Warano",
             email: "carineteoi@mail.com",
+            profil:"https://i.ibb.co/rKbXNwg5/Chat-GPT-Image-Jul-24-2025-09-26-56-AM.png"
         });
     }
 

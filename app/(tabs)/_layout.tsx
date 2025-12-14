@@ -23,6 +23,7 @@ export default function TabsLayout() {
           alignItems: "center",
           backgroundColor: "#1F2A2E",
           borderTopWidth: 0,
+          marginHorizontal:6,
           paddingHorizontal: 18,
           shadowColor: "#000",
           shadowOffset: { width: 0, height: 8 },
