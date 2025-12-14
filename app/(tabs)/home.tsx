@@ -1,16 +1,17 @@
 // Home page of the app
-import assets from '@/assets'
+import assets, { icons } from '@/assets'
 import { useApp } from '@/lib/hooks/useApp'
 import { useAuth } from '@/lib/hooks/useAuth'
-import { Ionicons } from '@expo/vector-icons'
-import React from 'react'
-import { Image, ScrollView, Text, View } from 'react-native'
+import { Ionicons, Octicons } from '@expo/vector-icons'
+import React, { useState } from 'react'
+import { Image, ImageProps, ScrollView, Text, TextInput, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const HomePage = () => {
   const { AppName } = useApp()
   const insets = useSafeAreaInsets();
   const { user } = useAuth()
+  const [searchTerm, setSearchTerm] = useState("")
   const { notifications } = useApp()
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 96, paddingTop: insets.top, paddingHorizontal: 4 }} >
@@ -28,7 +29,7 @@ const HomePage = () => {
             />
             <View className='w-5 h-5 bg-secondary absolute -top-1 -right-1 flex-row justify-center items-center rounded-full'>
               <Text className='text-white text-[12px] font-bold'>
-                {notifications.filter((el) => {return !el.isRead}).length}
+                {notifications.filter((el) => { return !el.isRead }).length}
               </Text>
             </View>
           </View>
@@ -38,8 +39,70 @@ const HomePage = () => {
         </View>
       </View>
 
+      {/* Input and sort icons */}
+      <View className='flex-row justify-between px-6 gap-2 my-4'>
+        <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
+          {!searchTerm.length && <View className='w-12 h-16 flex-row justify-center items-center'>
+            <Octicons className='text-[#767676]' name="search" size={24} color="black" />
+          </View>}
+          <TextInput onChangeText={(e) => setSearchTerm(e)} placeholder='Search your dream car...' keyboardType="web-search" className='flex-1 text-[17px]' />
+        </View>
+        <View className='w-12 h-12 bg-white border-border flex-row justify-center items-center rounded-full'>
+          {searchTerm.length ? <View className='w-12 h-16 flex-row justify-center items-center'>
+            <Octicons className='text-[#767676]' name="search" size={24} color="black" />
+          </View> : <Image source={icons.sorter} className='h-6 w-6' />
+          }
+        </View>
+      </View>
+
+      <Brands />
+
     </ScrollView>
   )
 }
 
+const ListBrands = [
+  {
+    icon: assets.tesla,
+    name: "Ferrari"
+  },
+  {
+    icon: assets.tesla,
+    name: "Ferrari"
+  },
+  {
+    icon: assets.tesla,
+    name: "Ferrari"
+  },
+  {
+    icon: assets.tesla,
+    name: "Ferrari"
+  },
+]
+
+type brandType = {
+  icon: ImageProps,
+  name: string
+}
+
+const Brands = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [brands, setBrands] = useState<brandType[]>(ListBrands)
+  return (
+    <View className='mt-2 px-6'>
+      <Text className='text-2xl font-bold my-2'>Brands  </Text>
+      <View className='flex-row gap-2 justify-between'>
+        {
+          brands.map((el, idx) => (
+            <View key={idx} className='h-16 w-16 gap-2'>
+              <View className='h-16 rounded-full bg-secondary flex-row justify-center items-center'>
+                <Image source={el.icon} className='w-8 h-8' />
+              </View>
+              <Text className='text-center text-[17px] text-secondary '>{el.name} </Text>
+            </View>
+          ))
+        }
+      </View>
+    </View>)
+}
 export default HomePage

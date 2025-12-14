@@ -12,4 +12,7 @@ const assets = {
   sapjasha:require("./images/android-chrome-192x192.png")
 };
 
+export const icons={
+  sorter:require("./icons/sort-icon.png")
+}
 export default assets;
