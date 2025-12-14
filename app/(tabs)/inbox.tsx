@@ -1,13 +1,12 @@
-//Edit profile page
 import React from 'react'
 import { Text, View } from 'react-native'
 
-const EditProfile = () => {
+const InboxMessages = () => {
   return (
     <View>
-      <Text>EditProfile</Text>
+      <Text>InboxMessages</Text>
     </View>
   )
 }
 
-export default EditProfile
+export default InboxMessages

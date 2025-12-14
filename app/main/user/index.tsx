@@ -1,13 +1,13 @@
-//Here is a main page where user can choose what he wanna change
+//Edit profile page
 import React from 'react'
 import { Text, View } from 'react-native'
 
-const Profile = () => {
+const EditProfile = () => {
   return (
     <View>
-      <Text>Profile</Text>
+      <Text>EditProfile</Text>
     </View>
   )
 }
 
-export default Profile
+export default EditProfile
