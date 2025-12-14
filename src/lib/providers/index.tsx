@@ -1,10 +1,13 @@
 import React from 'react'
 import { AppProvider } from './AppProvider'
+import { CurrencyProvider } from './CurrencyProvider'
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
     return (
         <AppProvider>
-            {children}
+            <CurrencyProvider>
+                {children}
+            </CurrencyProvider>
         </AppProvider>
     )
 }
