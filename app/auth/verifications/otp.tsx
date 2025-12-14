@@ -79,7 +79,8 @@ const ForgotPassword = () => {
             </View>
 
             <View className='px-6 mb-2'>
-                <Button onPress={()=>router.push("/main/index")} disabled={!isComplete} className={`rounded-full p-4 ${isComplete ? 'bg-button' : 'bg-gray'}`}>
+                {/* @ts-ignore is real root mouff */}
+                <Button onPress={()=>router.replace("/main")} disabled={!isComplete} className={`rounded-full p-4 ${isComplete ? 'bg-button' : 'bg-gray'}`}>
                     <Text className='text-white font-semibold text-xl'>
                         Continue
                     </Text>
