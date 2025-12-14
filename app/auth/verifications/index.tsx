@@ -90,7 +90,7 @@ const EnterNumberForVerification = () => {
             </View>
 
             <View className='my-6 gap-2'>
-                <Button className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications/enterCode")}>
+                <Button className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications/otp")}>
                     <Text className="text-white font-semibold text-xl">
                         Continue
                     </Text>

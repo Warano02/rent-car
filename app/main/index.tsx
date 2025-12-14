@@ -1,12 +1,13 @@
+// Home page of the app
 import React from 'react'
 import { Text, View } from 'react-native'
 
-const enterCode = () => {
+const HomePage = () => {
   return (
     <View>
-      <Text>enterCode</Text>
+      <Text>index</Text>
     </View>
   )
 }
 
-export default enterCode
+export default HomePage
