@@ -2,15 +2,14 @@
 import assets from '@/assets';
 import { Button } from '@/components/ui/button';
 import { useApp } from '@/lib/hooks/useApp';
-import { Link } from 'expo-router';
-import React, { useState } from 'react';
+import { Link, useRouter } from 'expo-router';
+import React from 'react';
 import { Image, ScrollView, Text, TextInput, View } from 'react-native';
 
 const ForgotPassword = () => {
   const { logo_black, eye } = assets;
   const { AppName } = useApp()
-  const [isSecure, setIsSecure] = useState(true);
-
+  const router = useRouter()
 
   return (
     <ScrollView className='flex-1 px-6 pt-8'>
@@ -37,7 +36,8 @@ const ForgotPassword = () => {
       </View>
 
       <View className='my-6 gap-2'>
-        <Button className="bg-button rounded-full items-center justify-center p-4">
+        {/* @ts-ignore n */}
+        <Button className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications")}>
           <Text className="text-white font-semibold text-xl">
             Continue
           </Text>
@@ -58,5 +58,10 @@ const ForgotPassword = () => {
   )
 }
 
+const Selector = () => {
+  return <View>
+
+  </View>
+}
 
 export default ForgotPassword
