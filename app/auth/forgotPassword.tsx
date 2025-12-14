@@ -1,12 +1,62 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+//Login page 
+import assets from '@/assets';
+import { Button } from '@/components/ui/button';
+import { useApp } from '@/lib/hooks/useApp';
+import { Link } from 'expo-router';
+import React, { useState } from 'react';
+import { Image, ScrollView, Text, TextInput, View } from 'react-native';
 
 const ForgotPassword = () => {
+  const { logo_black, eye } = assets;
+  const { AppName } = useApp()
+  const [isSecure, setIsSecure] = useState(true);
+
+
   return (
-    <View>
-      <Text>ForgotPassword</Text>
-    </View>
+    <ScrollView className='flex-1 px-6 pt-8'>
+      <View className='flex-row gap-4 items-center'>
+        <Image source={logo_black} className='h-16 w-16 ' />
+        <Text className='text-4xl font-bold text-black'>{AppName} </Text>
+      </View>
+
+      <View className='my-4 flex-row justify-center'>
+        <Text className='text-black text-3xl font-semibold'>Reset your password</Text>
+      </View>
+
+      <View className='my-6'>
+        <Text className='text-xl text-gray text-center'>
+          Enter the email address associated with your account and  we'll send you a code and  link  to reset your password.
+        </Text>
+      </View>
+
+
+      <View className='gap-2'>
+        <View className='border border-border bg-background px-2  flex-row items-center justify-between h-14 pr-4 rounded-xl'>
+          <TextInput placeholder='Email' className='font-semibold text-[16px] flex-1 text-black' />
+        </View>
+      </View>
+
+      <View className='my-6 gap-2'>
+        <Button className="bg-button rounded-full items-center justify-center p-4">
+          <Text className="text-white font-semibold text-xl">
+            Continue
+          </Text>
+        </Button>
+
+        <View className='mt-6 flex-row gap-2 justify-center'>
+          <Text className='text-[17px] text-center text-secondary'>Return </Text>
+          <Link href={"/auth"} className='text-[17px] text-center font-bold '>to Sign in</Link>
+        </View>
+      </View>
+
+
+      <View className='mt-40 flex-row gap-2 justify-center'>
+        <Text className='text-[17px] text-center text-secondary'>Create a</Text>
+        <Link href={"/auth/signup"} className='text-[17px] text-center font-bold '>New account</Link>
+      </View>
+    </ScrollView>
   )
 }
+
 
 export default ForgotPassword
