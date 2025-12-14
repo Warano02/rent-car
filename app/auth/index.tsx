@@ -1,26 +1,19 @@
 //Login page 
 import assets from '@/assets';
+import AuthHeader from '@/components/auth/AuthHeader';
 import Socials from '@/components/auth/Socials';
 import { Button } from '@/components/ui/button';
-import { useApp } from '@/lib/hooks/useApp';
 import { MaterialIcons } from "@expo/vector-icons";
-import { Link, useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 const Login = () => {
-  const { logo_black, eye } = assets;
-  const { AppName } = useApp()
+  const {  eye } = assets;
   const [checked, setChecked] = useState(false);
   const [isSecure, setIsSecure] = useState(true);
-
-  const router = useRouter()
-
   return (
     <ScrollView className='flex-1 px-6 pt-8'>
-      <View className='flex-row gap-4 items-center'>
-        <Image source={logo_black} className='h-16 w-16 ' />
-        <Text className='text-4xl font-bold text-black'>{AppName} </Text>
-      </View>
+      <AuthHeader />
       <View className='my-4'>
         <Text className='text-black text-3xl font-semibold'>Welcome Back</Text>
         <Text className='text-black text-3xl font-semibold'>Ready to hit the road.</Text>

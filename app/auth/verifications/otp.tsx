@@ -1,15 +1,13 @@
-import assets from '@/assets';
+import AuthHeader from '@/components/auth/AuthHeader';
 import { Button } from '@/components/ui/button';
-import { useApp } from '@/lib/hooks/useApp';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 
 const OTP_LENGTH = 4;
 
 const ForgotPassword = () => {
-    const { logo_black } = assets;
-    const { AppName } = useApp();
+ 
     const router = useRouter();
 
     const [otp, setOtp] = useState<string[]>(
@@ -53,12 +51,7 @@ const ForgotPassword = () => {
 
     return (
         <ScrollView className='flex-1 pt-4'>
-            <View className='flex-row px-6 gap-4 items-center'>
-                <Image source={logo_black} className='h-16 w-16' />
-                <Text className='text-4xl font-bold text-black'>
-                    {AppName}
-                </Text>
-            </View>
+            <AuthHeader/>
 
             <View className='my-4 px-6 items-center'>
                 <Text className='text-black text-3xl font-semibold text-center'>

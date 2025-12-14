@@ -1,22 +1,15 @@
 //Login page 
-import assets from '@/assets';
+import AuthHeader from '@/components/auth/AuthHeader';
 import { Button } from '@/components/ui/button';
-import { useApp } from '@/lib/hooks/useApp';
 import { Link, useRouter } from 'expo-router';
 import React from 'react';
-import { Image, ScrollView, Text, TextInput, View } from 'react-native';
+import { ScrollView, Text, TextInput, View } from 'react-native';
 
 const ForgotPassword = () => {
-  const { logo_black, eye } = assets;
-  const { AppName } = useApp()
   const router = useRouter()
-
   return (
     <ScrollView className='flex-1 px-6 pt-8'>
-      <View className='flex-row gap-4 items-center'>
-        <Image source={logo_black} className='h-16 w-16 ' />
-        <Text className='text-4xl font-bold text-black'>{AppName} </Text>
-      </View>
+      <AuthHeader/>
 
       <View className='my-4 flex-row justify-center'>
         <Text className='text-black text-3xl font-semibold'>Reset your password</Text>
