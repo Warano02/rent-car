@@ -59,11 +59,11 @@ const Login = () => {
             Log In
           </Text>
         </Button>
-        <Button onPress={() => router.push("/auth/signup")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-4">
+        {/* <Button onPress={() => router.push("/auth/signup")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-4">
           <Text className="text-black  font-semibold text-xl">
             Sign Up
           </Text>
-        </Button>
+        </Button> */}
 
       </View>
 
@@ -74,6 +74,11 @@ const Login = () => {
       </View>
 
       <Socials action="Login" />
+
+      <View className='mt-6 flex-row gap-2 justify-center'>
+        <Text className='text-[17px] text-center text-secondary'>Don't have an account ?</Text>
+        <Link href={"/auth/signup"} className='text-[17px] text-center font-bold underline'>SignUp</Link>
+      </View>
     </ScrollView>
   )
 }
