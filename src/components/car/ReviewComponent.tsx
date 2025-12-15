@@ -16,8 +16,8 @@ const ReviewComponent = ({
 }: IReviewComponent) => {
 
     return (
-        <Pressable className='bg-white border border-border  rounded-xl p-4' style={[{ width: 300, marginHorizontal: 8 }, containerStyle]}>
-            <View className='flex-row items-center gap-6'>
+        <Pressable className='bg-white border border-border  rounded-xl p-4 justify-between' style={[{ width: 300, marginHorizontal: 8 }, containerStyle]}>
+            <View className='flex-row  items-center justify-between ' style={{gap:120}}>
                 <View className='flex-row items-center  gap-2'>
                     <View>
                         <Image source={assets.person} height={5} width={2} resizeMode="cover" />
