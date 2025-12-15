@@ -101,7 +101,7 @@ const CarDetails = () => {
 
 
       <View className='px-6'>
-        <Pressable className='bg-button rounded-full items-center flex-row gap-2 justify-center p-4'>
+        <Pressable onPress={()=>router.push(`/main/booking`)} className='bg-button rounded-full items-center flex-row gap-2 justify-center p-4'>
           <Text className="text-white font-semibold text-xl">
             Book Now
           </Text>

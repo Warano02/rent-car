@@ -2,11 +2,13 @@
 import ReviewComponent from '@/components/car/ReviewComponent'
 import Header from '@/components/Header'
 import { AntDesign, Octicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { FlatList, Pressable, Text, TextInput, View } from 'react-native'
 
 const CarReviews = () => {
   const [searchTerm, setSearchTerm] = useState("")
+  const router=useRouter()
   return (
     <View className='my-4 flex-1'>
       <Header title='Reviews' />
@@ -40,7 +42,7 @@ const CarReviews = () => {
         </View>
       </View>
       <View className='px-4 '>
-        <Pressable className='bg-button rounded-full items-center flex-row gap-2 justify-center p-4'>
+        <Pressable onPress={()=>router.push(`/main/booking`)} className='bg-button rounded-full items-center flex-row gap-2 justify-center p-4'>
           <Text className="text-white font-semibold text-xl">
             Book Now
           </Text>
