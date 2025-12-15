@@ -18,7 +18,7 @@ const HomePage = () => {
   const { notifications } = useApp()
   const router = useRouter()
   return (
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 96, paddingTop: insets.top, paddingHorizontal: 4 }} >
+    <View style={{ paddingBottom: 96, paddingTop: insets.top, paddingHorizontal: 4 }}>
       <View className='flex-row justify-between px-6 border-b-[0.5px] border-b-border pb-6'>
         <View className='flex-row gap-4 items-center'>
           <Image source={assets.logo_black} className='h-12 w-12 ' />
@@ -43,44 +43,44 @@ const HomePage = () => {
         </View>
       </View>
 
-      {/* Input and sort icons */}
-      <View className='flex-row justify-between px-6 gap-2 my-4'>
-        <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
-          {!searchTerm.length && <View className='w-12 h-16 flex-row justify-center items-center'>
-            <Octicons className='text-[#767676]' name="search" size={24} color="black" />
-          </View>}
-          <TextInput onChangeText={(e) => setSearchTerm(e)} placeholder='Search your dream car...' keyboardType="web-search" className='flex-1 text-[17px]' />
-        </View>
-        <View className='w-12 h-12 bg-white border-border flex-row justify-center items-center rounded-full'>
-          {searchTerm.length ? <View className='w-12 h-16 flex-row justify-center items-center'>
-            <Octicons className='text-[#767676]' name="search" size={24} color="black" />
-          </View> : <Image source={icons.sorter} className='h-6 w-6' />
-          }
-        </View>
-      </View>
-
-      <Brands />
-
-      <View className='bg-white rounded-lg mt-6  '>
-        <TitleSection title='Best Cars' link={"./(tabs)/home"} />
-        <Text className='text-[17px] font-bold text-gray '>Avaible</Text>
-        <View className=' flex-row gap-2 justify-between '>
-          <SingleCar />
-          <SingleCar />
+      <ScrollView showsVerticalScrollIndicator={false} >
+        {/* Input and sort icons */}
+        <View className='flex-row justify-between px-6 gap-2 my-4'>
+          <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
+            {!searchTerm.length && <View className='w-12 h-16 flex-row justify-center items-center'>
+              <Octicons className='text-[#767676]' name="search" size={24} color="black" />
+            </View>}
+            <TextInput onChangeText={(e) => setSearchTerm(e)} placeholder='Search your dream car...' keyboardType="web-search" className='flex-1 text-[17px]' />
+          </View>
+          <View className='w-12 h-12 bg-white border-border flex-row justify-center items-center rounded-full'>
+            {searchTerm.length ? <View className='w-12 h-16 flex-row justify-center items-center'>
+              <Octicons className='text-[#767676]' name="search" size={24} color="black" />
+            </View> : <Image source={icons.sorter} className='h-6 w-6' />
+            }
+          </View>
         </View>
 
-        <View className='gap-2'>
-          <TitleSection title='Nearby' link={"./(tabs)/home"} />
-          <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6'>
-            <Image source={assets.m8} />
-          </Pressable>
+        <Brands />
+
+        <View className='bg-white rounded-lg mt-6  '>
+          <TitleSection title='Best Cars' link={"./(tabs)/home"} />
+          <Text className='text-[17px] font-bold text-gray '>Avaible</Text>
+          <View className=' flex-row gap-2 justify-between '>
+            <SingleCar />
+            <SingleCar />
+          </View>
+
+          <View className='gap-2'>
+            <TitleSection title='Nearby' link={"./(tabs)/home"} />
+            <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6'>
+              <Image source={assets.m8} />
+            </Pressable>
+          </View>
+
         </View>
+      </ScrollView>
+    </View>
 
-      </View>
-
-
-
-    </ScrollView>
   )
 }
 
