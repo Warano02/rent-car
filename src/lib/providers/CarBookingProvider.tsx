@@ -1,4 +1,4 @@
-import { ICarBooking, TBookingDates, TLocation } from "@/types";
+import { ICarBooking, TBookingDates, TLocation, TPaymentMethod } from "@/types";
 import React, { createContext, useMemo, useState } from "react";
 
 export const CarBookingContext = createContext<ICarBooking | null>(null);
@@ -6,6 +6,7 @@ export const CarBookingContext = createContext<ICarBooking | null>(null);
 export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }) => {
     const [location, setLocation] = useState<TLocation | undefined>();
     const [dailyPrice, setDailyPrice] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState<TPaymentMethod>("om")
 
     const [date, setDate] = useState<TBookingDates>({
         startDate: "",
@@ -31,7 +32,7 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
         return numberOfDays * dailyPrice;
     }, [dailyPrice, numberOfDays]);
 
-    const value: ICarBooking = { location, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, };
+    const value: ICarBooking = { location, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice,paymentMethod, setPaymentMethod };
 
     return (
         <CarBookingContext.Provider value={value}>

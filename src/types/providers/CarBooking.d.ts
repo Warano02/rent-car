@@ -1,3 +1,5 @@
+import { TPaymentMethod } from "..";
+
 /** Where user wanna go with the car */
 export type TLocation = {
   label: string;
@@ -22,4 +24,6 @@ export interface ICarBooking {
   setDailyPrice: (price: number) => void;
   numberOfDays: number;
   totalPrice: number;
+  paymentMethod: TPaymentMethod;
+  setPaymentMethod: React.Dispatch<React.SetStateAction<TPaymentMethod>>
 }

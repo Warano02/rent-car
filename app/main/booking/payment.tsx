@@ -3,6 +3,7 @@ import assets, { icons } from '@/assets'
 import PaymentMethod from '@/components/book/PaymentMethod'
 import StepperComponent from '@/components/book/StepperComponent'
 import Header from '@/components/Header'
+import { useBooking } from '@/lib/hooks/useCarBooking'
 import { TPaymentMethod } from '@/types'
 import { Entypo, Feather, FontAwesome5, MaterialIcons } from '@expo/vector-icons'
 import { Link, useRouter } from 'expo-router'
@@ -10,7 +11,7 @@ import React, { useState } from 'react'
 import { Image, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 
 const PaiementDetails = () => {
-  const [paymentMethod, setPaymentMethod] = useState<TPaymentMethod>("om")
+  const { paymentMethod, setPaymentMethod } = useBooking()
   const [showSelector, setShowSelector] = useState(false)
   const [checked, setChecked] = useState(false)
   const router = useRouter()
