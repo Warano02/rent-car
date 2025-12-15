@@ -10,6 +10,7 @@ const assets = {
   ferrari: require('./images/ferrari.png'),
   white_ferari:require("./images/white_ferrari.png"),
   success: require('./images/success.png'),
+  m8:require("./images/m8.png"),
   sapjasha:require("./images/android-chrome-192x192.png")
 };
 

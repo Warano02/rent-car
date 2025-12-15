@@ -5,8 +5,9 @@ import TitleSection from '@/components/TitleSection'
 import { useApp } from '@/lib/hooks/useApp'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { Ionicons, Octicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { Image, ImageProps, ScrollView, Text, TextInput, View } from 'react-native'
+import { Image, ImageProps, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const HomePage = () => {
@@ -15,6 +16,7 @@ const HomePage = () => {
   const { user } = useAuth()
   const [searchTerm, setSearchTerm] = useState("")
   const { notifications } = useApp()
+  const router = useRouter()
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 96, paddingTop: insets.top, paddingHorizontal: 4 }} >
       <View className='flex-row justify-between px-6 border-b-[0.5px] border-b-border pb-6'>
@@ -66,7 +68,17 @@ const HomePage = () => {
           <SingleCar />
           <SingleCar />
         </View>
+
+        <View className='gap-2'>
+          <TitleSection title='Nearby' link={"./(tabs)/home"} />
+          <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6'>
+            <Image source={assets.m8} />
+          </Pressable>
+        </View>
+
       </View>
+
+
 
     </ScrollView>
   )
