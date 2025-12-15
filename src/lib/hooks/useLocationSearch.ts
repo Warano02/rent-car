@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
-interface LocationResult {
+const API_KEY = "2e10a11c9e224c6b9917debb80867e61";
+
+export interface LocationResult {
   id: string;
   label: string;
   description: string;
@@ -12,7 +14,6 @@ export const useLocationSearch = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<LocationResult[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (query.length < 3) {
@@ -21,38 +22,36 @@ export const useLocationSearch = () => {
     }
 
     const timeout = setTimeout(() => {
-      searchLocation(query);
-    }, 500);
+      fetchLocations(query);
+    }, 400);
 
     return () => clearTimeout(timeout);
   }, [query]);
 
-  const searchLocation = async (text: string) => {
+  const fetchLocations = async (text: string) => {
     try {
+        console.log("start searching")
       setLoading(true);
-      setError(null);
-      console.log("Start searching");
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+
+      const res = await fetch(
+        `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
           text
-        )}&format=json&addressdetails=1&limit=10`
+        )}&limit=10&apiKey=${API_KEY}`
       );
-      console.log(response);
 
-      const data = await response.json();
+      const json = await res.json();
 
-      const formatted: LocationResult[] = data.map((item: any) => ({
-        id: item.place_id.toString(),
-        label: item.display_name.split(",")[0],
-        description: item.display_name,
-        lat: Number(item.lat),
-        lon: Number(item.lon),
+      const formatted = json.features.map((item: any) => ({
+        id: item.properties.place_id,
+        label: item.properties.formatted.split(",")[0],
+        description: item.properties.formatted,
+        lat: item.properties.lat,
+        lon: item.properties.lon,
       }));
+      console.log(formatted)
 
       setResults(formatted);
-    } catch (err) {
-      console.log("error occured ", err);
-      setError("Unable to fetch locations");
+    } catch (e) {
       setResults([]);
     } finally {
       setLoading(false);
@@ -64,6 +63,5 @@ export const useLocationSearch = () => {
     setQuery,
     results,
     loading,
-    error,
   };
 };

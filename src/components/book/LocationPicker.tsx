@@ -1,3 +1,4 @@
+import { useBooking } from '@/lib/hooks/useCarBooking';
 import { useLocationSearch } from '@/lib/hooks/useLocationSearch';
 import { Ionicons } from "@expo/vector-icons";
 import React from 'react';
@@ -19,7 +20,7 @@ interface ILocationPicker {
 const LocationPicker = ({ isOpen, setIsOpen }: ILocationPicker) => {
     const { query, setQuery, results, loading } = useLocationSearch();
     const { height } = useWindowDimensions();
-
+    const { setLocation } = useBooking()
     return (
         <BottomSheet visible={isOpen} setVisible={setIsOpen}>
             <View className="bg-white px-4 pt-4 rounded-t-2xl" style={{ height: height * 0.5 }}  >
@@ -37,7 +38,7 @@ const LocationPicker = ({ isOpen, setIsOpen }: ILocationPicker) => {
                         Searching...
                     </Text>
                 )}
-                
+
                 {!loading && query.length > 2 && results.length === 0 && (
                     <Text className="text-center text-gray-400 mt-4">
                         No results found
@@ -53,6 +54,7 @@ const LocationPicker = ({ isOpen, setIsOpen }: ILocationPicker) => {
                         <LocationResultItem
                             item={item}
                             onPress={() => {
+                                setLocation({label:item.description,lat:item.lat,long:item.lon})
                                 console.log(item);
                                 setIsOpen(false);
                             }}
