@@ -18,4 +18,8 @@ export interface ICarBooking {
   setLocation: (location: TLocation) => void;
   date: TBookingDates;
   setDate: (d: TBookingDates) => void;
+  dailyPrice: number; //Da
+  setDailyPrice: (price: number) => void;
+  numberOfDays: number;
+  totalPrice: number;
 }
