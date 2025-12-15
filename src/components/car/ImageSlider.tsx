@@ -1,0 +1,61 @@
+import React, { useRef, useState } from 'react';
+import { Animated, Dimensions, FlatList, Image, View } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const ImageSlider = ({ images }: { images: string[] }) => {
+    const scrollX = useRef(new Animated.Value(0)).current;
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const flatListRef = useRef<FlatList>(null);
+
+    const handleScroll = (event: any) => {
+        const index = Math.round(event.nativeEvent.contentOffset.x / width);
+        setCurrentIndex(index);
+    };
+    return (
+        <View className='bg-btnBorder pb-6'>
+            <FlatList
+                ref={flatListRef}
+                data={images}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(_, index) => index.toString()}
+                renderItem={({ item }) => (
+                    <Image
+                        source={{ uri: item }}
+                        style={{ width, height: 220 }}
+                        resizeMode="cover"
+                    />
+                )}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                    { useNativeDriver: false, listener: handleScroll },
+                )}
+            />
+
+            <View className='flex-row justify-center mt-6'>
+                {images.map((_, index) => (
+                    <View
+                        key={index}
+                        style={[
+                            [
+                                {
+                                    backgroundColor: index === currentIndex ? '#333' : '#bbb',
+                                },
+                                {
+                                    width: 10,
+                                    height: 10,
+                                    borderRadius: 5,
+                                    marginHorizontal: 5,
+                                },
+                            ],
+                        ]}
+                    />
+                ))}
+            </View>
+        </View>
+    );
+};
+
+export default ImageSlider;
