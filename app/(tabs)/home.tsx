@@ -1,5 +1,7 @@
 // Home page of the app
 import assets, { icons } from '@/assets'
+import SingleCar from '@/components/car/SingleCar'
+import TitleSection from '@/components/TitleSection'
 import { useApp } from '@/lib/hooks/useApp'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { Ionicons, Octicons } from '@expo/vector-icons'
@@ -57,6 +59,15 @@ const HomePage = () => {
 
       <Brands />
 
+      <View className='bg-white rounded-lg mt-6  '>
+        <TitleSection title='Best Cars' link={"./(tabs)/home"} />
+        <Text className='text-[17px] font-bold text-gray '>Avaible</Text>
+        <View className=' flex-row gap-2 justify-between '>
+          <SingleCar />
+          <SingleCar />
+        </View>
+      </View>
+
     </ScrollView>
   )
 }
@@ -89,7 +100,7 @@ const Brands = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [brands, setBrands] = useState<brandType[]>(ListBrands)
   return (
-    <View className='mt-2 px-6'>
+    <View className='mt-2 px-6 my-6'>
       <Text className='text-2xl font-bold my-2'>Brands  </Text>
       <View className='flex-row gap-2 justify-between'>
         {

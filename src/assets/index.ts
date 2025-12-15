@@ -8,6 +8,7 @@ const assets = {
   person: require('./images/person.png'),
   tesla: require('./images/tesla.png'),
   ferrari: require('./images/ferrari.png'),
+  white_ferari:require("./images/white_ferrari.png"),
   success: require('./images/success.png'),
   sapjasha:require("./images/android-chrome-192x192.png")
 };
