@@ -18,6 +18,7 @@ const assets = {
 };
 
 export const icons={
-  sorter:require("./icons/sort-icon.png")
+  sorter:require("./icons/sort-icon.png"),
+  cards:require("./icons/Card.png")
 }
 export default assets;

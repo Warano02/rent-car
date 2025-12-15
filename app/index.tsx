@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/(tabs)/home")
+      router.replace("/main/booking/payment")
     }, 2000);
   }, [])
   return (
