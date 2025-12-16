@@ -21,6 +21,7 @@ const assets = {
 export const icons = {
   sorter: require("./icons/sort-icon.png"),
   cards: require("./icons/Card.png"),
-  card_i:require("./images/card_icon.png")
+  card_i:require("./images/card_icon.png"),
+  notif:require("./icons/snooze.png")
 };
 export default assets;
