@@ -1,3 +1,4 @@
+export * from "./mocks/cars";
 export * from "./providers/AppProviders";
 export * from "./providers/CarBooking";
 
