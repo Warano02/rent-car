@@ -12,11 +12,9 @@ import React, { useState } from 'react'
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 
 const BookingDetails = () => {
-  const [bookWDriver, setBookWDriver] = useState(false)
-  const [gender, setGenger] = useState<"m" | "f">('m')
   const router = useRouter()
 
-  const { location, date, totalPrice } = useBooking()
+  const { location, date, totalPrice, setBookingUser, bookingUser, bookWDriver, setBookWDriver } = useBooking()
   const { formatAmount } = useCurrency()
   // setter of the modals
   const [openLocationPicker, setOpenLocationPicker] = useState(false)
@@ -42,19 +40,19 @@ const BookingDetails = () => {
             <View className='w-12 h-16 flex-row justify-center items-center'>
               <Octicons className='text-[#767676]' name="person" size={24} color="#767676" />
             </View>
-            <TextInput placeholder='Full Name*' autoComplete="family-name" keyboardType="name-phone-pad" className='flex-1 text-[17px]' />
+            <TextInput value={bookingUser.fullName} onChangeText={(e) => setBookingUser((p) => ({ ...p, fullName: e }))} placeholder='Full Name*' autoComplete="family-name" keyboardType="name-phone-pad" className='flex-1 text-[17px]' />
           </View>
           <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
             <View className='w-12 h-16 flex-row justify-center items-center'>
               <MaterialCommunityIcons name="email-outline" size={24} color="#767676" />
             </View>
-            <TextInput placeholder='Email Address*' autoComplete="email" keyboardType="email-address" className='flex-1 text-[17px]' />
+            <TextInput value={bookingUser.email} onChangeText={(e) => setBookingUser((p) => ({ ...p, email: e }))} placeholder='Email Address*' autoComplete="email" keyboardType="email-address" className='flex-1 text-[17px]' />
           </View>
           <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
             <View className='w-12 h-16 flex-row justify-center items-center'>
               <MaterialIcons name="phone" size={24} color="#767676" />
             </View>
-            <TextInput placeholder='Contact*' autoComplete="tel" keyboardType="numeric" className='flex-1 text-[17px]' />
+            <TextInput value={bookingUser.contact} onChangeText={(e) => setBookingUser((p) => ({ ...p, contact: e }))} placeholder='Contact*' autoComplete="tel" keyboardType="numeric" className='flex-1 text-[17px]' />
           </View>
         </View>
 
@@ -62,13 +60,13 @@ const BookingDetails = () => {
         <View className='mt-6'>
           <Text className='text-xl font-bold my-2'>Gender</Text>
           <View className='flex-row gap-6'>
-            <Pressable onPress={() => setGenger("m")} className={`rounded-xl flex-row justify-center items-center gap-2 ${gender === "m" ? "bg-black" : "border border-border"}`} style={{ height: 40, width: 100 }}>
-              <MaterialCommunityIcons name="gender-male" size={24} color={gender == "m" ? "white" : "#7F7F7F"} />
-              <Text className={`font-bold ${gender == "m" ? "text-white" : "text-placeholder"}`}> Male</Text>
+            <Pressable onPress={() => setBookingUser((p) => ({ ...p, gender: "m" }))} className={`rounded-xl flex-row justify-center items-center gap-2 ${bookingUser.gender === "m" ? "bg-black" : "border border-border"}`} style={{ height: 40, width: 100 }}>
+              <MaterialCommunityIcons name="gender-male" size={24} color={bookingUser.gender == "m" ? "white" : "#7F7F7F"} />
+              <Text className={`font-bold ${bookingUser.gender == "m" ? "text-white" : "text-placeholder"}`}> Male</Text>
             </Pressable>
-            <Pressable onPress={() => setGenger("f")} className={`rounded-xl flex-row justify-center items-center gap-2 ${gender === "f" ? "bg-black" : "border border-border"}`} style={{ height: 40, width: 110 }}>
-              <MaterialCommunityIcons name="gender-female" size={24} color={gender == "f" ? "white" : "#7F7F7F"} />
-              <Text className={`font-bold ${gender == "f" ? "text-white" : "text-placeholder"}`}>Female</Text>
+            <Pressable onPress={() => setBookingUser((p) => ({ ...p, gender: "f" }))} className={`rounded-xl flex-row justify-center items-center gap-2 ${bookingUser.gender === "f" ? "bg-black" : "border border-border"}`} style={{ height: 40, width: 110 }}>
+              <MaterialCommunityIcons name="gender-female" size={24} color={bookingUser.gender == "f" ? "white" : "#7F7F7F"} />
+              <Text className={`font-bold ${bookingUser.gender == "f" ? "text-white" : "text-placeholder"}`}>Female</Text>
             </Pressable>
           </View>
         </View>

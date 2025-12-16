@@ -15,6 +15,16 @@ export type TBookingDates = {
   endDate: string;
 };
 
+/**
+ * Who is booking the car
+ */
+export type TBookingUser = {
+  fullName: string;
+  email: string;
+  contact: string;
+  gender: "m" | "f";
+};
+
 export interface ICarBooking {
   location?: TLocation;
   setLocation: (location: TLocation) => void;
@@ -25,5 +35,9 @@ export interface ICarBooking {
   numberOfDays: number;
   totalPrice: number;
   paymentMethod: TPaymentMethod;
-  setPaymentMethod: React.Dispatch<React.SetStateAction<TPaymentMethod>>
+  setPaymentMethod: React.Dispatch<React.SetStateAction<TPaymentMethod>>;
+  bookingUser: TBookingUser;
+  setBookingUser: React.Dispatch<React.SetStateAction<TBookingUser>>;
+  bookWDriver: boolean;
+  setBookWDriver: React.Dispatch<React.SetStateAction<boolean>>;
 }

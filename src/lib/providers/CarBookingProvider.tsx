@@ -1,12 +1,14 @@
-import { ICarBooking, TBookingDates, TLocation, TPaymentMethod } from "@/types";
-import React, { createContext, useMemo, useState } from "react";
+import { ICarBooking, TBookingDates, TBookingUser, TLocation, TPaymentMethod } from "@/types";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 
 export const CarBookingContext = createContext<ICarBooking | null>(null);
 
 export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }) => {
     const [location, setLocation] = useState<TLocation | undefined>();
     const [dailyPrice, setDailyPrice] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState<TPaymentMethod>("om")
+    const [paymentMethod, setPaymentMethod] = useState<TPaymentMethod>("om")
+    const [bookingUser, setBookingUser] = useState<TBookingUser>({ fullName: "", email: "", contact: "", gender: "m" })
+    const [bookWDriver, setBookWDriver] = useState(false)
 
     const [date, setDate] = useState<TBookingDates>({
         startDate: "",
@@ -32,8 +34,10 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
         return numberOfDays * dailyPrice;
     }, [dailyPrice, numberOfDays]);
 
-    const value: ICarBooking = { location, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice,paymentMethod, setPaymentMethod };
-
+    const value: ICarBooking = { location,bookWDriver, setBookWDriver, bookingUser, setBookingUser, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, paymentMethod, setPaymentMethod };
+    useEffect(() => {
+        console.log("Booking user ", bookingUser)
+    }, [bookingUser])
     return (
         <CarBookingContext.Provider value={value}>
             {children}
