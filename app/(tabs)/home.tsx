@@ -72,7 +72,7 @@ const HomePage = () => {
 
           <View className='gap-2'>
             <TitleSection title='Nearby' link={"./(tabs)/home"} />
-            <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6'>
+            <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6 rounded-lg'>
               <Image source={assets.m8} />
             </Pressable>
           </View>
