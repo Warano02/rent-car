@@ -13,7 +13,7 @@ const Notifications = () => {
   const [selectedId, setSelectedId] = useState<string[]>([])
 
 
-  const [openDelete, setOpenDelete] = useState(true)
+  const [openDelete, setOpenDelete] = useState(false)
 
   const SelectAll = () => selectedId.length == notifications.length ? setSelectedId([]) : setSelectedId(notifications.map(el => el.id))
 

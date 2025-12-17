@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 const Profile = () => {
   const insets = useSafeAreaInsets()
   const { AppName } = useApp()
-  
+
   const router = useRouter()
   return (
     <View className="flex-1 my-6 " style={{ paddingBottom: insets.bottom + 26 }}>
@@ -32,8 +32,8 @@ const Profile = () => {
             <Text className='text-placeholder'>carineteoi@gmail.com</Text>
           </View>
         </View>
-
-        <Pressable className='gap-2 items-center'>
+        {/**@ts-ignore is the correct route */}
+        <Pressable onPress={() => router.push("/main/settings")} className='gap-2 items-center'>
           <EvilIcons name="pencil" size={34} color="#7F7F7F" />
           <Text className='text-xs text-placeholder'>Edit Profile</Text>
         </Pressable>
@@ -63,10 +63,11 @@ const Profile = () => {
             <AntDesign name="right" size={24} color="#7F7F7F" />
           </Pressable>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push("/(tabs)/notifications")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Ionicons name="notifications-outline" size={24} color="#7F7F7F" />              </View>
+                <Ionicons name="notifications-outline" size={24} color="#7F7F7F" />
+              </View>
               <Text className='text-xl text-placeholder'>Notification</Text>
             </View>
             <AntDesign name="right" size={24} color="#7F7F7F" />
@@ -86,16 +87,17 @@ const Profile = () => {
         <View className='my-2'>
           <Text className='font-bold text-xl'>Support</Text>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push('/main/settings/currency')} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Ionicons name="settings-outline" size={24} color="#7F7F7F" />              </View>
-              <Text className='text-xl text-placeholder'>Settings </Text>
+                <MaterialIcons name="currency-exchange" size={24} color="#7F7F7F" />
+              </View>
+              <Text className='text-xl text-placeholder'>Currency </Text>
             </View>
             <AntDesign name="right" size={24} color="#7F7F7F" />
           </Pressable>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push("/main/settings/language")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
                 <Ionicons name="language" size={24} color="#7F7F7F" />              </View>

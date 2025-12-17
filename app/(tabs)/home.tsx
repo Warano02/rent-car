@@ -37,9 +37,9 @@ const HomePage = () => {
               </Text>
             </View>
           </View>
-          <View className='h-12 w-12 rounded-full relative overflow-hidden'>
+          <Pressable onPress={()=>router.push("/(tabs)/profile")} className='h-12 w-12 rounded-full relative overflow-hidden'>
             <Image source={assets.person} className='h-full w-full object-cover' />
-          </View>
+          </Pressable>
         </View>
       </View>
 
