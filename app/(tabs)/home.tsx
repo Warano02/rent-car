@@ -43,7 +43,7 @@ const HomePage = () => {
         </View>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 50 }}>
         {/* Input and sort icons */}
         <View className='flex-row justify-between px-6 gap-2 my-4'>
           <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
