@@ -1,9 +1,11 @@
 import { ICarBooking, TBookingDates, TBookingUser, TLocation, TPaymentMethod } from "@/types";
+import { RelativePathString, useRouter } from "expo-router";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 
 export const CarBookingContext = createContext<ICarBooking | null>(null);
 
 export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }) => {
+    const router = useRouter()
     const [location, setLocation] = useState<TLocation | undefined>();
     const [dailyPrice, setDailyPrice] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState<TPaymentMethod>("om")
@@ -34,7 +36,17 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
         return numberOfDays * dailyPrice;
     }, [dailyPrice, numberOfDays]);
 
-    const value: ICarBooking = { location,bookWDriver, setBookWDriver, bookingUser, setBookingUser, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, paymentMethod, setPaymentMethod };
+    const SelectCar = (id: string, link?: RelativePathString): void => {
+        try {
+            // When api will be, i'll send the request to the backend to get car details
+
+
+        } catch (e) {
+            console.log("Error occured while trying to select the car ", e)
+        }
+    }
+
+    const value: ICarBooking = { SelectCar, location, bookWDriver, setBookWDriver, bookingUser, setBookingUser, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, paymentMethod, setPaymentMethod };
     useEffect(() => {
         console.log("Booking user ", bookingUser)
     }, [bookingUser])

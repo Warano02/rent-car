@@ -40,4 +40,5 @@ export interface ICarBooking {
   setBookingUser: React.Dispatch<React.SetStateAction<TBookingUser>>;
   bookWDriver: boolean;
   setBookWDriver: React.Dispatch<React.SetStateAction<boolean>>;
+  SelectCar: (id: string, link?: RelativePathString) => void;
 }
