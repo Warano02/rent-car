@@ -100,7 +100,8 @@ const Profile = () => {
           <Pressable onPress={() => router.push("/main/settings/language")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Ionicons name="language" size={24} color="#7F7F7F" />              </View>
+                <Ionicons name="language" size={24} color="#7F7F7F" />
+              </View>
               <Text className='text-xl text-placeholder'>Language </Text>
             </View>
             <AntDesign name="right" size={24} color="#7F7F7F" />
@@ -109,7 +110,8 @@ const Profile = () => {
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Fontisto name="persons" size={24} color="#7F7F7F" />              </View>
+                <Fontisto name="persons" size={24} color="#7F7F7F" />
+              </View>
               <Text className='text-xl text-placeholder'>Invite Friends </Text>
             </View>
             <AntDesign name="right" size={24} color="#7F7F7F" />
@@ -118,7 +120,8 @@ const Profile = () => {
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <MaterialIcons name="privacy-tip" size={24} color="#7F7F7F" />              </View>
+                <MaterialIcons name="privacy-tip" size={24} color="#7F7F7F" />
+              </View>
               <Text className='text-xl text-placeholder'>Privacy policy </Text>
             </View>
             <AntDesign name="right" size={24} color="#7F7F7F" />
@@ -127,7 +130,8 @@ const Profile = () => {
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <AntDesign name="logout" size={24} color="#7F7F7F" />              </View>
+                <AntDesign name="logout" size={24} color="#7F7F7F" />
+              </View>
               <Text className='text-xl text-placeholder'>Log Out </Text>
             </View>
             <AntDesign name="right" size={24} color="#7F7F7F" />

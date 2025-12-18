@@ -25,7 +25,7 @@ const HomePage = () => {
           <Text className='text-2xl font-bold text-black'>{AppName} </Text>
         </View>
         <View className='flex-row gap-2'>
-          <View className='h-12 w-12  bg-btnBorder border-border flex-row justify-center items-center rounded-full'>
+          <Pressable onPress={() => router.push("/(tabs)/notifications")} className='h-12 w-12  bg-btnBorder border-border flex-row justify-center items-center rounded-full'>
             <Ionicons
               name="notifications-outline"
               size={24}
@@ -36,7 +36,7 @@ const HomePage = () => {
                 {notifications.filter((el) => { return !el.isRead }).length}
               </Text>
             </View>
-          </View>
+          </Pressable>
           <Pressable onPress={()=>router.push("/(tabs)/profile")} className='h-12 w-12 rounded-full relative overflow-hidden'>
             <Image source={assets.person} className='h-full w-full object-cover' />
           </Pressable>
@@ -63,7 +63,7 @@ const HomePage = () => {
         <Brands />
 
         <View className='bg-white rounded-lg mt-6  '>
-          <TitleSection title='Best Cars' link={"./(tabs)/home"} />
+          <TitleSection title='Best Cars' link={"/(tabs)/home"} />
           <Text className='text-[17px] font-bold text-gray '>Avaible</Text>
           <View className=' flex-row gap-2 justify-between '>
             <SingleCar />
@@ -71,7 +71,7 @@ const HomePage = () => {
           </View>
 
           <View className='gap-2'>
-            <TitleSection title='Nearby' link={"./(tabs)/home"} />
+            <TitleSection title='Nearby' link={"/(tabs)/home"} />
             <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6 rounded-lg'>
               <Image source={assets.m8} />
             </Pressable>
