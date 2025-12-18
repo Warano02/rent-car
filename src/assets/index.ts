@@ -21,7 +21,15 @@ const assets = {
 export const icons = {
   sorter: require("./icons/sort-icon.png"),
   cards: require("./icons/Card.png"),
-  card_i:require("./images/card_icon.png"),
-  notif:require("./icons/snooze.png")
+  card_i: require("./images/card_icon.png"),
+  notif: require("./icons/snooze.png"),
+};
+
+export const persons = {
+  soudays: require("./person/soudays.jpg"),
+  aza: require("./person/azaa.jpg"),
+  joyce: require("./person/joyce.jpg"),
+  ivora: require("./person/ivora.jpg"),
+  black: require("./person/black.jpg"),
 };
 export default assets;
