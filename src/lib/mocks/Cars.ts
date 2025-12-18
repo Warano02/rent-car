@@ -31,7 +31,7 @@ export const cars: TCars = [
     renter: {
       id: "_kliks",
       name: "Felix Warano",
-      profil: "",
+      profil: assets.person,
     },
     reviews: [
       {
@@ -106,7 +106,7 @@ export const cars: TCars = [
     renter: {
       id: "_kliks",
       name: "Felix Warano",
-      profil: "",
+      profil: assets.person,
     },
     reviews: [
       {
@@ -181,7 +181,7 @@ export const cars: TCars = [
     renter: {
       id: "_kliks",
       name: "Felix Warano",
-      profil: "",
+      profil: assets.person,
     },
     reviews: [
       {
@@ -256,7 +256,7 @@ export const cars: TCars = [
     renter: {
       id: "_kliks",
       name: "Felix Warano",
-      profil: "",
+      profil: assets.person,
     },
     reviews: [
       {

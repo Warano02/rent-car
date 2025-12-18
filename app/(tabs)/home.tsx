@@ -4,6 +4,7 @@ import SingleCar from '@/components/car/SingleCar'
 import TitleSection from '@/components/TitleSection'
 import { useApp } from '@/lib/hooks/useApp'
 import { useAuth } from '@/lib/hooks/useAuth'
+import { cars } from '@/lib/mocks/Cars'
 import { Ionicons, Octicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
@@ -37,7 +38,7 @@ const HomePage = () => {
               </Text>
             </View>
           </Pressable>
-          <Pressable onPress={()=>router.push("/(tabs)/profile")} className='h-12 w-12 rounded-full relative overflow-hidden'>
+          <Pressable onPress={() => router.push("/(tabs)/profile")} className='h-12 w-12 rounded-full relative overflow-hidden'>
             <Image source={assets.person} className='h-full w-full object-cover' />
           </Pressable>
         </View>
@@ -66,8 +67,12 @@ const HomePage = () => {
           <TitleSection title='Best Cars' link={"/(tabs)/home"} />
           <Text className='text-[17px] font-bold text-gray '>Avaible</Text>
           <View className=' flex-row gap-2 justify-between '>
-            <SingleCar />
-            <SingleCar />
+
+            {
+              cars.filter(c => c.isBest).splice(0, 2)
+                .map((car, idx) => <SingleCar key={idx} id={car.id} image={car.images[0]} name={car.name} price={car.price} seats={car.features.seats} rating={car.rating} location={car.location.name} />)
+            }
+
           </View>
 
           <View className='gap-2'>

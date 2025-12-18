@@ -1,4 +1,4 @@
-import { TPaymentMethod } from "..";
+import { TFeatures, TPaymentMethod, TReview } from "..";
 
 /** Where user wanna go with the car */
 export type TLocation = {
@@ -40,5 +40,7 @@ export interface ICarBooking {
   setBookingUser: React.Dispatch<React.SetStateAction<TBookingUser>>;
   bookWDriver: boolean;
   setBookWDriver: React.Dispatch<React.SetStateAction<boolean>>;
+  reviews:TReview[],
+  features:TFeatures,
   SelectCar: (id: string, link?: RelativePathString) => void;
 }
