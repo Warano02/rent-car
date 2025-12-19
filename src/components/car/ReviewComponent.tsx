@@ -1,31 +1,29 @@
-import assets from '@/assets';
 import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
-import { Image, Pressable, Text, View, ViewStyle } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, Text, View, ViewStyle } from 'react-native';
 
 interface IReviewComponent {
     containerStyle?: ViewStyle;
     fromReview?: boolean;
-    ratingCount?: number;
+    ratingCount: number;
+    name: string,
+    profil: ImageSourcePropType,
+    contain: string,
 }
 
-const ReviewComponent = ({
-    containerStyle,
-    fromReview,
-    ratingCount = 4,
-}: IReviewComponent) => {
+const ReviewComponent = ({ containerStyle, contain, profil, fromReview = false, ratingCount = 4, name, }: IReviewComponent) => {
 
     return (
         <Pressable className='bg-white border border-border  rounded-xl p-4 justify-between' style={[{ width: 300, marginHorizontal: 8 }, containerStyle]}>
-            <View className='flex-row  items-center justify-between ' style={{gap:120}}>
+            <View className='flex-row  items-center justify-between ' style={{ gap: 120 }}>
                 <View className='flex-row items-center  gap-2'>
                     <View>
-                        <Image source={assets.person} height={5} width={2} resizeMode="cover" />
+                        <Image source={profil} className='rounded-full' style={{ height: 40, width: 40 }} resizeMode="cover" />
                     </View>
-                    <Text className='text-[14px] font-semibold'>John Doe</Text>
+                    <Text className='text-[14px] font-semibold'>{name} </Text>
                 </View>
                 <View className='flex-row items-center gap-2 flex-1 justify-end'>
-                    {!fromReview && <Text className='text-[14px] font-bold'>5.0</Text>}
+                    {!fromReview && <Text className='text-[14px] font-bold'>{ratingCount.toFixed(1)} </Text>}
                     {fromReview && <Text className='text-placeholder text-[12px] font-medium'>Today</Text>}
                     {!fromReview && (
                         <FontAwesome name="star" size={18} color={'#FF8F3A'} />
@@ -44,8 +42,7 @@ const ReviewComponent = ({
                 </View>
             )}
             <Text className='text-[14px] text-placeholder font-medium'>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum alias
-                accusantium qui rerum iste perferendis consectetur non voluptatibus,
+                {contain.length > 200 ? contain.slice(0, 198).concat("...") : contain}
             </Text>
         </Pressable>
     );
