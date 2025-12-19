@@ -4,7 +4,7 @@ import Header from '@/components/Header'
 import { useApp } from '@/lib/hooks/useApp'
 import { Feather, FontAwesome6, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import React, { useState } from 'react'
-import { FlatList, Image, Pressable, ScrollView, Text, View } from 'react-native'
+import { FlatList, Image, Pressable, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Notifications = () => {
@@ -55,16 +55,27 @@ const Notifications = () => {
       </View>)
       }
 
-      <ScrollView showsVerticalScrollIndicator={false} className="px-2" contentContainerStyle={{ paddingBottom: insets.bottom + 20 }}>
+      <FlatList
+        data={notifications}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 8,
+          paddingBottom: insets.bottom + 20,
+        }}
+        renderItem={({ item }) => (
+          <SingleNotification
+            onLongPress={() => toggleSelect(item.id)}
+            onPress={() => Click(item.id)}
+            title={item.title}
+            contain={item.containt}
+            isSelected={selectedId.includes(item.id)}
+            isRead={item.isRead}
+            icon={item?.icon}
+          />
+        )}
+      />
 
-        <FlatList
-          data={notifications}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => <SingleNotification onLongPress={() => toggleSelect(item.id)} onPress={() => Click(item.id)} title={item.title} contain={item.containt} isSelected={selectedId.includes(item.id)} isRead={item.isRead} icon={item?.icon} />}
-        />
-
-
-      </ScrollView>
 
       <DeleteNotifications isVisible={openDelete} setIsVisible={setOpenDelete} />
     </View>
