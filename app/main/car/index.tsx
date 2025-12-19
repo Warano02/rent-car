@@ -1,21 +1,22 @@
 //Car details page
-import assets from '@/assets'
+import { icons } from '@/assets'
 import FeatureComponent from '@/components/car/FeatureComponent'
 import ImageSlider from '@/components/car/ImageSlider'
 import ReviewComponent from '@/components/car/ReviewComponent'
 import Header from '@/components/Header'
 import TitleSection from '@/components/TitleSection'
+import { useBooking } from '@/lib/hooks/useCarBooking'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
-import React, { useState } from 'react'
-import { FlatList, Image, Pressable, ScrollView, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { FlatList, Image, ImageSourcePropType, Pressable, ScrollView, Text, View } from 'react-native'
 
 const CarDetails = () => {
-  const [images, setImages] = useState(['https://images.unsplash.com/photo-1594502184342-2e12f877aa73?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1594502184342-2e12f877aa73?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1594502184342-2e12f877aa73?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ])
-
+  const { features, details, reviews, renter } = useBooking()
+  const [images, setImages] = useState<ImageSourcePropType[]>([])
+  useEffect(() => {
+    setImages(details.images)
+  })
   const router = useRouter()
   return (
     <View className='my-4 flex-1'>
@@ -29,30 +30,32 @@ const CarDetails = () => {
           <View>
             <View className="flex-row justify-between items-center gap-4">
               <View className='flex-1'>
-                <Text className='text-xl font-semibold'>Tesla Model S</Text>
-                <Text className='text-[12px] font-medium'>A car with high specs that are rented ot an affordable price</Text>
+                <Text className='text-xl font-semibold'>{details.name} </Text>
+                <Text className='text-[12px] font-medium'>{details.description} </Text>
               </View>
 
               <View>
                 <View className='flex-row items-center gap-4'>
-                  <Text className='text-xl font-bold'>5.0</Text>
+                  <Text className='text-xl font-bold'>{(reviews.map((r) => r.rating).reduce((a, b) => a + b) / reviews.length).toFixed(1)} </Text>
                   <FontAwesome
                     name="star"
                     size={18}
                     color={'#FF8F3A'}
                   />
                 </View>
-                <Text className='text-placeholder text-[14px]'>
-                  (100+ Reviews)
-                </Text>
+                {reviews.length > 2 && <Text className='text-placeholder text-[14px]'>
+                  ({reviews.length - 1} + Reviews)
+                </Text>}
               </View>
             </View>
 
             {/* Host profile */}
-            <View className='mt-12 flex-row items-center justify-between gap-6'>
+            <View className='mt-12 flex-row items-center justify-between gap-2'>
               <View className='flex-row items-center gap-6'>
-                <Image source={assets.person} height={42} width={42} resizeMode='cover' />
-                <Text className='text-xl font-bold'>Felix Warano</Text>
+                <Image source={renter.profil} height={42} width={42} resizeMode='cover' />
+                <Text className='text-xl font-bold'>{renter.name}
+                  {"\t"}  <Image source={icons.verified} />
+                </Text>
               </View>
 
               <View className='flex-row items-center gap-6'>
@@ -74,26 +77,30 @@ const CarDetails = () => {
             <View className='mt-6'>
               <Text className='text-xl font-bold'>Car Features</Text>
 
-              <View className='mt-4 flex-row items-center gap-6'>
-                <FeatureComponent />
-                <FeatureComponent />
-                <FeatureComponent />
+              <View className='mt-4 flex-row items-center gap-2'>
+                <FeatureComponent title='Capacity' icon={icons.sofa} value={features.seats + " Seats"} />
+                <FeatureComponent title='Engin Out' icon={icons.enginOut} value={features.enginOut} />
+                <FeatureComponent title='Max Speed' icon={icons.maxSpeed} value={features.maxSpeed + "Km/h"} />
               </View>
               <View className='mt-4 flex-row items-center gap-6'>
-                <FeatureComponent />
-                <FeatureComponent />
-                <FeatureComponent />
+                <FeatureComponent title='Advance' icon={icons.vitesse} value={features.advance} />
+                <FeatureComponent title='Single charge' icon={icons.speed} value={features.enginCharge} />
+                <FeatureComponent title='Parking' icon={icons.p} value={features.parking} />
               </View>
             </View>
             {/* @ts-ignore is a valid link but i don'r know why ts reject it  */}
-            <TitleSection title='Reviews (125)' link={`/main/car/reviews`} />
-          
-          <FlatList
+            <TitleSection title={`Reviews ${reviews.length - 1}+`} link={`/main/car/reviews`} />
+
+            <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
-              data={[1, 2, 3]}
-              renderItem={() => <ReviewComponent/>}
+              data={reviews.slice(0, 5)}
+              keyExtractor={(item, idx) => idx.toString()}
+              renderItem={({ item }) => (
+                <ReviewComponent contain={item.contain} profil={item.profil} name={item.name} ratingCount={item.rating} />
+              )}
             />
+
           </View>
         </View>
 
@@ -101,7 +108,7 @@ const CarDetails = () => {
 
 
       <View className='px-6'>
-        <Pressable onPress={()=>router.push(`/main/booking`)} className='bg-button rounded-full items-center flex-row gap-2 justify-center p-4'>
+        <Pressable onPress={() => router.push(`/main/booking`)} className='bg-button rounded-full items-center flex-row gap-2 justify-center p-4'>
           <Text className="text-white font-semibold text-xl">
             Book Now
           </Text>

@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Animated, Dimensions, FlatList, Image, View } from 'react-native';
+import { Animated, Dimensions, FlatList, Image, ImageSourcePropType, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
-const ImageSlider = ({ images }: { images: string[] }) => {
+const ImageSlider = ({ images }: { images: ImageSourcePropType[] }) => {
     const scrollX = useRef(new Animated.Value(0)).current;
     const [currentIndex, setCurrentIndex] = useState(0);
     const flatListRef = useRef<FlatList>(null);
@@ -23,9 +23,9 @@ const ImageSlider = ({ images }: { images: string[] }) => {
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({ item }) => (
                     <Image
-                        source={{ uri: item }}
-                        style={{ width, height: 220 }}
-                        resizeMode="cover"
+                        source={item}
+                        style={{ width:360, height: 220 }}
+                        resizeMode="contain"
                     />
                 )}
                 onScroll={Animated.event(

@@ -29,6 +29,7 @@ export const icons = {
   p: require("./icons/p.png"),
   vitesse: require("./icons/vitesse.png"),
   sofa: require("./icons/sofa.png"),
+  verified:require("./icons/verified.png")
 };
 
 export const persons = {

@@ -1,4 +1,5 @@
-import { TFeatures, TPaymentMethod, TReview } from "..";
+import { ImageSourcePropType } from "react-native";
+import { TFeatures, TPaymentMethod, TRenter, TReview } from "..";
 
 /** Where user wanna go with the car */
 export type TLocation = {
@@ -28,6 +29,7 @@ export type TBookingUser = {
 export type TBookingDetails = {
   name: string;
   description: string;
+  images:ImageSourcePropType[]
 };
 
 export interface ICarBooking {
@@ -49,4 +51,5 @@ export interface ICarBooking {
   features: TFeatures;
   SelectCar: (id: string, link?: RelativePathString) => void;
   details: TBookingDetails;
+  renter: TRenter;
 }
