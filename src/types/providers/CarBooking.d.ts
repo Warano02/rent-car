@@ -25,6 +25,11 @@ export type TBookingUser = {
   gender: "m" | "f";
 };
 
+export type TBookingDetails = {
+  name: string;
+  description: string;
+};
+
 export interface ICarBooking {
   location?: TLocation;
   setLocation: (location: TLocation) => void;
@@ -40,7 +45,8 @@ export interface ICarBooking {
   setBookingUser: React.Dispatch<React.SetStateAction<TBookingUser>>;
   bookWDriver: boolean;
   setBookWDriver: React.Dispatch<React.SetStateAction<boolean>>;
-  reviews:TReview[],
-  features:TFeatures,
+  reviews: TReview[];
+  features: TFeatures;
   SelectCar: (id: string, link?: RelativePathString) => void;
+  details: TBookingDetails;
 }

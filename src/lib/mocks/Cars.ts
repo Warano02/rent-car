@@ -4,6 +4,7 @@ import { TCars } from "@/types";
 export const cars: TCars = [
   {
     id: "_cars01",
+    description:"A car with high specs that are rented ot an affordable price.",
     name: "Ferrari-FF",
     isBest: true,
     price: 2500,
@@ -79,6 +80,7 @@ export const cars: TCars = [
   },
   {
     id: "_cars02",
+    description:"A car with high specs that are rented ot an affordable price.",
     name: "Tesla Model S",
     isBest: true,
     price: 2500,
@@ -154,6 +156,7 @@ export const cars: TCars = [
   },
   {
     id: "_cars03",
+    description:"A car with high specs that are rented ot an affordable price.",
     name: "Ferrari",
     isBest: true,
     price: 2600,
@@ -229,6 +232,7 @@ export const cars: TCars = [
   },
   {
     id: "_cars03",
+    description:"",
     name: "Ferrari",
     isBest: true,
     price: 2600,

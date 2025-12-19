@@ -1,20 +1,20 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import React from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Image, ImageSourcePropType, Pressable, Text, View } from 'react-native'
 
-const FeatureComponent = () => {
+interface IFeatures {
+    icon: ImageSourcePropType,
+    title: string,
+    value: string
+}
+const FeatureComponent = ({ icon, title, value }: IFeatures) => {
     return (
         <Pressable className='bg-outlineButtonBg p-4 flex-1  justify-between rounded-xl'>
             <Pressable className='bg-white h-12 w-12  rounded-full justify-center items-center'>
-                <MaterialCommunityIcons
-                    name="sofa-single-outline"
-                    color={'#767676'}
-                    size={20}
-                />
+                <Image source={icon} style={{ width: 24, height: 24 }} />
             </Pressable>
             <View>
-                <Text className='text-placeholder text-[14px] font-semibold'>Capacity</Text>
-                <Text className='font-semibold text-[14px]'>5 Seats</Text>
+                <Text className='text-placeholder text-[14px] font-semibold'>{title} </Text>
+                <Text className='font-semibold text-[14px]'>{value} </Text>
             </View>
         </Pressable>
     )

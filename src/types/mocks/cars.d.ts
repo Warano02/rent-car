@@ -1,8 +1,8 @@
-import { ImageProps, ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from "react-native";
 
 export type TReview = {
   name: string;
-  profil?: string | ImageProps;
+  profil: ImageSourcePropType;
   rating: number;
   contain: string;
   date: string;
@@ -31,6 +31,7 @@ export type TColorCar = {
 type TCar = {
   id: string;
   name: string;
+  description: string;
   price: number; // Daily price in FCFA
   images: ImageSourcePropType[];
   isBest: boolean;

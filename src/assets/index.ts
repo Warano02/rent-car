@@ -23,6 +23,12 @@ export const icons = {
   cards: require("./icons/Card.png"),
   card_i: require("./images/card_icon.png"),
   notif: require("./icons/snooze.png"),
+  enginOut: require("./icons/enginOut.png"),
+  maxSpeed: require("./icons/maxSpeedpng.png"),
+  speed: require("./icons/speed.png"),
+  p: require("./icons/p.png"),
+  vitesse: require("./icons/vitesse.png"),
+  sofa: require("./icons/sofa.png"),
 };
 
 export const persons = {

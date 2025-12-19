@@ -1,4 +1,4 @@
-import { ICarBooking, TBookingDates, TBookingUser, TFeatures, TLocation, TPaymentMethod, TReview } from "@/types";
+import { ICarBooking, TBookingDates, TBookingDetails, TBookingUser, TFeatures, TLocation, TPaymentMethod, TReview } from "@/types";
 import { RelativePathString, useRouter } from "expo-router";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { cars } from "../mocks/Cars";
@@ -11,6 +11,8 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
     const [dailyPrice, setDailyPrice] = useState(0);
     const [reviews, setReviews] = useState<TReview[]>([])
     const [features, setFutures] = useState<TFeatures>({ seats: 2, parking: "Auto Parking", enginCharge: "250 HP", enginOut: "255", maxSpeed: 250, advance: "" })
+    const [details, setDetails] = useState<TBookingDetails>({ name: "", description: "" })
+
     //User infos
     const [location, setLocation] = useState<TLocation | undefined>();
     const [paymentMethod, setPaymentMethod] = useState<TPaymentMethod>("om")
@@ -49,7 +51,7 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
             setDailyPrice(car.price)
             setFutures(car.features)
             setReviews(car.reviews)
-
+            setDetails({ name: car.name, description: car.description })
             router.push(link || "/main/car")
 
         } catch (e) {
@@ -57,7 +59,7 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
         }
     }
 
-    const value: ICarBooking = { SelectCar, reviews, features, location, bookWDriver, setBookWDriver, bookingUser, setBookingUser, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, paymentMethod, setPaymentMethod };
+    const value: ICarBooking = { SelectCar, details, reviews, features, location, bookWDriver, setBookWDriver, bookingUser, setBookingUser, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, paymentMethod, setPaymentMethod };
     useEffect(() => {
         console.log("Booking user ", bookingUser)
     }, [bookingUser])
