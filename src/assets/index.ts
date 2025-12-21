@@ -1,5 +1,6 @@
 const assets = {
   carBg: require("./images/bg.png"),
+  partner:require("./images/partner.png"),
   whiteCar: require("./images/whitecar.png"),
   overlayBg: require("./images/overlay-bg.png"),
   logo: require("./images/logo.png"),
