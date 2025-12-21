@@ -4,6 +4,7 @@ import { AuthProvider } from './AuthProvider'
 import { CarBookingProvider } from './CarBookingProvider'
 import ChatProvider from './ChatsProvider'
 import { CurrencyProvider } from './CurrencyProvider'
+import { RentOutCarProvider } from './RentOutCarProvider'
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -11,9 +12,11 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
             <AuthProvider>
                 <CurrencyProvider>
                     <CarBookingProvider>
-                        <ChatProvider>
-                            {children}
-                        </ChatProvider>
+                        <RentOutCarProvider>
+                            <ChatProvider>
+                                {children}
+                            </ChatProvider>
+                        </RentOutCarProvider>
                     </CarBookingProvider>
                 </CurrencyProvider>
             </AuthProvider>

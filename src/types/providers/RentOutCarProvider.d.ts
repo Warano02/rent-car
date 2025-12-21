@@ -1,18 +1,32 @@
 import { ImageSourcePropType } from "react-native";
+type C = {
+  name: string;
+  code: string;
+};
+type CarModelImage = {
+  color: C;
+  img: ImageSourcePropType;
+};
 
 export type CarModel = {
   id: string;
   name: string;
-  image: ImageSourcePropType;
+  images: CarModelImage[];
 };
 
 export type CarBrand = {
   id: string;
   name: string;
-  isLuxury: boolean;
+  type: "luxury" | "regular";
   models: CarModel[];
 };
 
+export interface ICar {
+  brand?: string; //id  of brand selected
+  model?: string; //id of the model
+}
+
 export interface IRentOutCarProvider {
-  CarsBrands?: CarBrand;
+  carsBrands: CarBrand[];
+  car?: ICar;
 }

@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/main/partner")
+      router.replace("/main/partner/details")
     }, 2000);
   }, [])
   return (
