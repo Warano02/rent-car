@@ -4,14 +4,13 @@ import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 
-const OTP_LENGTH = 4;
 
 const ForgotPassword = () => {
  
     const router = useRouter();
 
     const [otp, setOtp] = useState<string[]>(
-        Array(OTP_LENGTH).fill('')
+        Array(4).fill('')
     );
 
     const activeIndex = otp.findIndex(v => v === '');
@@ -67,7 +66,7 @@ const ForgotPassword = () => {
 
             <View className='flex-row justify-center gap-3 mb-4'>
                 {otp.map((digit, index) => {
-                    const isActive = index === activeIndex || (isComplete && index === OTP_LENGTH - 1);
+                    const isActive = index === activeIndex || (isComplete && index === 4 - 1);
                     return (
                         <View key={index} className={`w-14 h-14 rounded items-center justify-center border ${isActive ? 'border-button' : 'border-btnBorder'} bg-white`}>
                             <Text className='text-2xl font-bold text-black'>
