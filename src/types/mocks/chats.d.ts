@@ -8,6 +8,7 @@ export type ChatMessage = {
   createdAt: number; // timestamp
   isRead: boolean;
 };
+
 type chatWith = {
   id: string;
   profil: ImageSourcePropType;
