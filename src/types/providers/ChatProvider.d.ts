@@ -1,3 +1,3 @@
-export interface IChatProvider{
-    
-}
+
+
+export interface IChatProvider {}
