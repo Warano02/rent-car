@@ -35,7 +35,6 @@ const InboxMessages = () => {
         showsVerticalScrollIndicator={false}
       />
 
-
     </View>
   )
 }

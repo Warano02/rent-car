@@ -17,7 +17,7 @@ const ForgotPassword = () => {
 
       <View className='my-6'>
         <Text className='text-xl text-gray text-center'>
-          Enter the email address associated with your account and  we'll send you a code and  link  to reset your password.
+          {"Enter the email address associated with your account and  we'll send you a code and  link  to reset your password."}
         </Text>
       </View>
 

@@ -9,18 +9,18 @@ const BrandPicker = () => {
         <View className='my-2 gap-6'>
 
             <View className='flex-row border border-border rounded-lg p-2 justify-between'>
-                <Pressable onPress={() => setSelector("brand")} className={`rounded-lg flex-1 justify-center items-center ${selector == "brand" && "bg-button"}`} style={{ width: 180, height: 40 }} >
-                    <Text className={`font-bold ${selector == "brand" ? "text-white" : "text-placeholder"}`}>Car Brand</Text>
+                <Pressable onPress={() => setSelector("brand")} className={`rounded-lg flex-1 justify-center items-center ${selector === "brand" && "bg-button"}`} style={{ width: 180, height: 40 }} >
+                    <Text className={`font-bold ${selector === "brand" ? "text-white" : "text-placeholder"}`}>Car Brand</Text>
 
                 </Pressable>
-                <Pressable onPress={() => setSelector("model")} className={`rounded-lg flex-1 justify-center items-center ${selector == "model" && "bg-button"}`} style={{ width: 180, height: 40 }}>
-                    <Text className={`font-bold ${selector == "model" ? "text-white" : "text-placeholder"}`}>Car Model</Text>
+                <Pressable onPress={() => setSelector("model")} className={`rounded-lg flex-1 justify-center items-center ${selector === "model" && "bg-button"}`} style={{ width: 180, height: 40 }}>
+                    <Text className={`font-bold ${selector === "model" ? "text-white" : "text-placeholder"}`}>Car Model</Text>
                 </Pressable>
             </View>
 
             <View className='py-4 rounded-lg border border-border'>
                 {
-                    selector == "brand" ? <View className={`px-4 flex-row  justify-between  items-center`}>
+                    selector === "brand" ? <View className={`px-4 flex-row  justify-between  items-center`}>
                         <Text className='font-bold '>Regular Cars Brand</Text>
                         <Text className='font-bold '>Lucury Cars Brand</Text>
                     </View> :
@@ -31,10 +31,10 @@ const BrandPicker = () => {
 
                 <View className='bg-border my-4' style={{ height: 1.5, width: "100%" }} />
 
-                {selector == "brand" ? (
+                {selector === "brand" ? (
                     <View className='py-2 flex-row gap-1' style={{ maxHeight: 157 }}>
                         <FlatList
-                            data={carsBrands.map(e => { const { models, ...r } = e; return r }).filter(d => d.type == "luxury")}
+                            data={carsBrands.map(e => { const { models, ...r } = e; return r }).filter(d => d.type === "luxury")}
                             keyExtractor={(_, index) => index.toString()}
                             renderItem={({ index, item }) => <SingleBrand brand={item.name} />}
                         />
@@ -42,7 +42,7 @@ const BrandPicker = () => {
 
                         <View className='bg-border h-full' style={{ width: 1.5 }} />
                         <FlatList
-                            data={carsBrands.map(e => { const { models, ...r } = e; return r }).filter(d => d.type == "regular")}
+                            data={carsBrands.map(e => { const { models, ...r } = e; return r }).filter(d => d.type === "regular")}
                             keyExtractor={(_, index) => index.toString()}
                             renderItem={({ index, item }) => <SingleBrand brand={item.name} />}
                         />
