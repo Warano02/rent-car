@@ -12,6 +12,7 @@ const assets = {
   white_ferari: require("./images/white_ferrari.png"),
   success: require("./images/success.png"),
   success2: require("./images/success2.png"),
+  corner:require("./images/corner.png"),
   m8: require("./images/m8.png"),
   sapjasha: require("./images/android-chrome-192x192.png"),
   om: require("./images/ompng.png"),

@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/main/partner/verifySuccess")
+      router.replace("/(tabs)/inbox")
     }, 2000);
   }, [])
   return (

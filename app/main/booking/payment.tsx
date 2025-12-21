@@ -110,7 +110,7 @@ const PaiementDetails = () => {
 }
 
 
-const BannerImage = ({ pm }: { pm: TPaymentMethod }) => {
+export const BannerImage = ({ pm }: { pm: TPaymentMethod }) => {
   return (
     <View
       className="mt-4 rounded-lg border border-border overflow-hidden"
