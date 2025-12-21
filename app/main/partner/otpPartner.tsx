@@ -49,7 +49,7 @@ const OtpPartner = () => {
 
     console.log("OTP verified:", code)
 
-    router.push("/main/partner/verifySuccess")
+    router.replace("/main/partner/verifySuccess")
   }
 
   const m = Math.floor(timeLeft / 60)
