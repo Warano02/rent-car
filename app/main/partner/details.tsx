@@ -100,7 +100,7 @@ const CarAndOwnerDetails = () => {
                         <Text className='text-[15px] text-black '> Accept <Link href={"https://"}>Terms </Link> </Text>
                     </View>
                 </View>
-                <Pressable disabled={!checked} onPress={() => router.push("/main/partner/otp")} className={`rounded-full items-center flex-row justify-center p-4 ${!checked ? "bg-gray" : "bg-button"}`}>
+                <Pressable disabled={!checked} onPress={() => router.push("/main/partner/otpPartner")} className={`rounded-full items-center flex-row justify-center p-4 ${!checked ? "bg-gray" : "bg-button"}`}>
                     <Text className="text-white font-semibold text-xl">
                         Submit & Continue
                     </Text>
