@@ -69,7 +69,7 @@ const Login = () => {
       <Socials action="Login" />
 
       <View className='mt-6 flex-row gap-2 justify-center'>
-        <Text className='text-[17px] text-center text-secondary'>Don't have an account ?</Text>
+        <Text className='text-[17px] text-center text-secondary'>{"Don't have an account ?"}</Text>
         <Link href={"/auth/signup"} className='text-[17px] text-center font-bold underline'>SignUp</Link>
       </View>
     </ScrollView>
