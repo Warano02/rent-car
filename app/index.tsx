@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/main/partner/otpPartner")
+      router.replace("/main/partner/verifySuccess")
     }, 2000);
   }, [])
   return (
