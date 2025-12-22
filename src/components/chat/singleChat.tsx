@@ -1,3 +1,4 @@
+import { useChat } from '@/lib/hooks/useChat'
 import { SingleConversation } from '@/types'
 import { Foundation } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
@@ -8,6 +9,7 @@ const SingleChat = ({ chat }: { chat: SingleConversation }) => {
     const [unread, setUnread] = useState(0)
     const [lastMessage, setLastMessage] = useState<{ isRead: boolean, type: "text" | "image", value?: string, time: number }>({ type: "text", value: "", isRead: true, time: 0 })
     const [date, setDate] = useState("")
+    const { selectChat } = useChat()
 
     useEffect(() => {
         setUnread(chat.messages.filter(m => !m.isRead).length)
@@ -22,12 +24,14 @@ const SingleChat = ({ chat }: { chat: SingleConversation }) => {
     }, [chat])
 
     const router = useRouter()
-    const handlePress = () => {
+    const handlePress = async (id: string) => {
+        await selectChat(id)
+        
         // @ts-ignore
         router.push("/main/chats")
     }
     return (
-        <Pressable onPress={handlePress} className='px-4 my-2 items-center flex-row justify-between bg-white rounded-lg' style={{ height: 80 }}>
+        <Pressable onPress={() => handlePress(chat.user.id)} className='px-4 my-1 items-center flex-row justify-between bg-white rounded-lg' style={{ height: 80 }}>
             <View className='flex-1 flex-row gap-2'>
                 <Image className='rounded-full' source={{ uri: chat.user.profil }} style={{ height: 60, width: 60 }} />
                 <View className='gap-2 justify-center'>

@@ -11,7 +11,7 @@ const InboxMessages = () => {
   const { chats } = useChat()
   return (
     <View className='my-4 flex-1'>
-      <View className='flex-row justify-between items-center mb-4 border-b-2  border-b-gray px-6'>
+      <View className='flex-row justify-between items-center mb-4  px-6'>
         <View className='flex-row gap-2'>
           <Pressable onPress={() => router.back()} className='w-12 h-12 bg-white border border-border flex-row justify-center items-center rounded-full'>
             <Ionicons name="chevron-back-sharp" size={24} color={"#767676"} />
