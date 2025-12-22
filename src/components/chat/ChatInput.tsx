@@ -3,16 +3,20 @@ import { useChat } from '@/lib/hooks/useChat'
 import { pickImages } from '@/lib/utils/PickImage'
 import { FontAwesome6, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import React, { useEffect, useState } from 'react'
-import { ImageBackground, Pressable, Text, TextInput, View } from 'react-native'
+import { ActivityIndicator, ImageBackground, Pressable, Text, TextInput, View } from 'react-native'
 import { BottomSheet } from '../BottomSheet'
 
 const ChatInput = () => {
     const [iText, setItext] = useState("")
     const [images, setImages] = useState<string[]>([])
-
+    const { sendMessage, isSending } = useChat()
     const handleImageSelection = async () => {
         const selectedImages = await pickImages()
         setImages(selectedImages)
+    }
+
+    const go = () => {
+        sendMessage({ type: "text", text: iText })
     }
 
     return (
@@ -24,7 +28,7 @@ const ChatInput = () => {
                     <Ionicons name="camera-outline" size={24} color="black" />
                 </Pressable>
             </View>
-            <Pressable onPress={() => alert("Sending message")} disabled={iText.length == 0} className={`rounded-full items-center justify-center  ${iText.length ? "bg-white" : ""}`} style={{ height: 50, width: 50 }} >
+            <Pressable onPress={go} disabled={iText.length == 0} className={`rounded-full items-center justify-center  ${iText.length ? "bg-white" : ""}`} style={{ height: 50, width: 50 }} >
                 <MaterialCommunityIcons name="send" size={24} color={iText.length ? "black" : "#7F7F7F"} />
             </Pressable>
             <ShowSelectedImages images={images} visible={images.length > 0} setImages={setImages} />
@@ -44,7 +48,7 @@ interface IImage {
 }
 
 const ShowSelectedImages = ({ visible, images, setImages }: ISSImage) => {
-    const { privateChat } = useChat()
+    const { privateChat, sendMessage, isSending } = useChat()
     const [data, setData] = useState<IImage[]>([])
     const [bgI, setbgI] = useState(0)
 
@@ -55,12 +59,14 @@ const ShowSelectedImages = ({ visible, images, setImages }: ISSImage) => {
         setbgI(Math.max(0, bgI - 1))
     }
 
-    const sendMessage = () => {
-        console.log(data)
+    const handleSending = async () => {
+        if (!data.length) return
+        sendMessage({ type: "image", images: data })
+
     }
     const updateCaption = (text: string) => setData(prev => prev.map((el, idx) => idx == bgI ? { ...el, caption: text } : el))
 
-    
+
 
     useEffect(() => {
         setData(() => images.map((url) => ({ url, caption: "" })))
@@ -73,7 +79,6 @@ const ShowSelectedImages = ({ visible, images, setImages }: ISSImage) => {
                         <MaterialCommunityIcons name="window-close" size={24} color="white" />
                     </Pressable>
                 </View>
-                {/* Pour que l'utilisateur puisse swipper soit a gauche o a droite et changer la bg */}
                 <View className='flex-1' />
 
                 <View className='flex-row justify-center items-center gap-2'>
@@ -101,8 +106,8 @@ const ShowSelectedImages = ({ visible, images, setImages }: ISSImage) => {
                         <Text className='text-white font-semibold text-xs' >{privateChat?.user.name} </Text>
                     </View>
 
-                    <Pressable onPress={sendMessage} className='rounded-full bg-button justify-center items-center' style={{ height: 50, width: 50 }}>
-                        <MaterialCommunityIcons name="send" size={24} color="white" />
+                    <Pressable disabled={isSending} onPress={handleSending} className='rounded-full bg-button justify-center items-center' style={{ height: 50, width: 50 }}>
+                        {!isSending ? <MaterialCommunityIcons name="send" size={24} color="white" /> : <ActivityIndicator />}
                     </Pressable>
                 </View>
             </ImageBackground>

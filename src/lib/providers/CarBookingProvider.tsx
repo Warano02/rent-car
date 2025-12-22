@@ -1,7 +1,7 @@
 import assets from "@/assets";
 import { ICarBooking, TBookingDates, TBookingDetails, TBookingUser, TFeatures, TLocation, TPaymentMethod, TRenter, TReview } from "@/types";
 import { RelativePathString, useRouter } from "expo-router";
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useMemo, useState } from "react";
 import { cars } from "../mocks/Cars";
 
 export const CarBookingContext = createContext<ICarBooking | null>(null);
@@ -33,14 +33,12 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
         const end = new Date(date.endDate);
 
         const diff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) || 1;
-        console.log("Car rent for ", diff, " days")
         return diff;
     }, [date.startDate, date.endDate]);
 
 
     const totalPrice = useMemo(() => {
         if (!dailyPrice || numberOfDays === 0) return 0;
-        console.log("You need to buy ", numberOfDays * dailyPrice, " XAF")
         return numberOfDays * dailyPrice;
     }, [dailyPrice, numberOfDays]);
 
@@ -62,9 +60,7 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
     }
 
     const value: ICarBooking = { SelectCar, renter, details, reviews, features, location, bookWDriver, setBookWDriver, bookingUser, setBookingUser, setLocation, date, setDate, dailyPrice, setDailyPrice, numberOfDays, totalPrice, paymentMethod, setPaymentMethod };
-    useEffect(() => {
-        console.log("Booking user ", bookingUser)
-    }, [bookingUser])
+  
     return (
         <CarBookingContext.Provider value={value}>
             {children}
