@@ -74,6 +74,93 @@ export const MOCK_CONVERSATIONS: ConversationMessages = [
         createdAt: 1710001200000,
         isRead: false,
       },
+      {
+        fromMe: false,
+        conversationId: "conv-2",
+        senderId: "user-1",
+        type: "text",
+        content:
+          "Oui 👍 j’ai presque fini. Il reste juste l’envoi des images multiples et la gestion des captions.",
+        createdAt: 1710000600000,
+        isRead: true,
+      },
+      {
+        fromMe: true,
+        conversationId: "conv-2",
+        senderId: "user-1",
+        type: "image",
+        content: "",
+        images: [
+          {
+            url: "https://picsum.photos/400/600?random=13",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=16",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=18",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+        ],
+        createdAt: 1710001200000,
+        isRead: false,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-2",
+        senderId: "user-1",
+        type: "text",
+        content:
+          "Oui 👍 j’ai presque fini. Il reste juste l’envoi des images multiples et la gestion des captions.",
+        createdAt: 1710000600000,
+        isRead: true,
+      },
+      {
+        fromMe: true,
+        conversationId: "conv-2",
+        senderId: "user-1",
+        type: "image",
+        content: "",
+        images: [
+          {
+            url: "https://picsum.photos/400/600?random=13",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=16",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=18",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=18",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=18",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=18",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+        ],
+        createdAt: 1710001200000,
+        isRead: false,
+      },
     ],
   },
 
