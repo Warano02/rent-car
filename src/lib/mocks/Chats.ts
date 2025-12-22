@@ -1,70 +1,189 @@
-import { ChatMessage, ConversationMessages } from '@/types';
+import { ConversationMessages } from "@/types";
 
-const avatarUrls = [
-  "https://i.pravatar.cc/150?img=1",
-  "https://i.pravatar.cc/150?img=2",
-  "https://i.pravatar.cc/150?img=3",
-  "https://i.pravatar.cc/150?img=4",
-  "https://i.pravatar.cc/150?img=5",
-  "https://i.pravatar.cc/150?img=6",
-  "https://i.pravatar.cc/150?img=7",
-  "https://i.pravatar.cc/150?img=8",
-  "https://i.pravatar.cc/150?img=9",
-  "https://i.pravatar.cc/150?img=10",
-];
-
-const sampleImageUrls = [
-  "https://picsum.photos/200/300?random=1",
-  "https://picsum.photos/200/300?random=2",
-  "https://picsum.photos/200/300?random=3",
-  "https://picsum.photos/200/300?random=4",
-  "https://picsum.photos/200/300?random=5",
-  "https://picsum.photos/200/300?random=6",
-];
-
-const names = [
-  "John Doe", "Sarah Johnson", "Michael Smith", "Emily Davis",
-  "Robert Brown", "Jessica Lee", "David Wilson", "Laura Clark",
-  "Daniel Martinez", "Sophia Lewis"
-];
-
-const randomFromArray = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
-
-const generateMessage = (conversationId: string, fromMe: boolean, idx: number): ChatMessage => {
-  const isImage = idx % 5 === 0; // 1 image sur 5
-  return {
-    fromMe,
-    conversationId,
-    senderId: fromMe ? "user-1" : `user-${Math.floor(Math.random() * 1000)}`,
-    type: isImage ? "image" : "text",
-    content: isImage ? "Image message" : `Message texte n°${idx + 1}`,
-    images: isImage ? randomFromArray(sampleImageUrls) : undefined,
-    createdAt: Date.now() - Math.floor(Math.random() * 1000 * 60 * 60 * 24), // last 24h
-    isRead: Math.random() > 0.3
-  }
-}
-
-export const MOCK_CONVERSATIONS: ConversationMessages = Array.from({ length: 30 }).map((_, convIdx) => {
-  const userId = convIdx + 2;
-  const conversationId = `conv-${userId}`;
-  const userAvatar = randomFromArray(avatarUrls);
-  const userName = randomFromArray(names);
-
-  const messages: ChatMessage[] = Array.from({ length: 30 }).map((_, msgIdx) => {
-    const fromMe = Math.random() > 0.5;
-    return generateMessage(conversationId, fromMe, msgIdx);
-  });
-
-  messages.sort((a, b) => a.createdAt - b.createdAt);
-
-  return {
+export const MOCK_CONVERSATIONS: ConversationMessages = [
+  {
     user: {
-      id: `user-${userId}`,
-      profil: userAvatar,
-      name: userName,
-      isOnline: Math.random() > 0.5,
-      lastSeen: "10:23 AM"
+      id: "user-2",
+      profil: "https://i.pravatar.cc/150?img=12",
+      name: "Sarah Johnson",
+      isOnline: true,
+      lastSeen: "09:42",
     },
-    messages
-  }
-});
+    messages: [
+      {
+        fromMe: false,
+        conversationId: "conv-2",
+        senderId: "user-2",
+        type: "text",
+        content: "Hey 👋",
+        createdAt: 1710000000000,
+        isRead: true,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-2",
+        senderId: "user-2",
+        type: "text",
+        content:
+          "Je voulais te demander si tu avais avancé sur la feature du chat. On doit montrer quelque chose au client demain.",
+        createdAt: 1710000300000,
+        isRead: true,
+      },
+      {
+        fromMe: true,
+        conversationId: "conv-2",
+        senderId: "user-1",
+        type: "text",
+        content:
+          "Oui 👍 j’ai presque fini. Il reste juste l’envoi des images multiples et la gestion des captions.",
+        createdAt: 1710000600000,
+        isRead: true,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-2",
+        senderId: "user-2",
+        type: "image",
+        content: "",
+        images: [
+          {
+            url: "https://picsum.photos/400/600?random=11",
+            caption: "Voici l’inspiration du design 📱",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=12",
+            caption: "J’aime bien ce layout pour les images",
+          },
+        ],
+        createdAt: 1710000900000,
+        isRead: false,
+      },
+      {
+        fromMe: true,
+        conversationId: "conv-2",
+        senderId: "user-1",
+        type: "image",
+        content: "",
+        images: [
+          {
+            url: "https://picsum.photos/400/600?random=13",
+            caption:
+              "Voilà un premier test côté UI. Dis-moi ce que tu en penses.",
+          },
+        ],
+        createdAt: 1710001200000,
+        isRead: false,
+      },
+    ],
+  },
+
+  {
+    user: {
+      id: "user-3",
+      profil: "https://i.pravatar.cc/150?img=22",
+      name: "Michael Smith",
+      isOnline: false,
+      lastSeen: "Hier",
+    },
+    messages: [
+      {
+        fromMe: false,
+        conversationId: "conv-3",
+        senderId: "user-3",
+        type: "text",
+        content:
+          "Salut Andrew, désolé pour le retard. J’étais en déplacement toute la journée.",
+        createdAt: 1710010000000,
+        isRead: true,
+      },
+      {
+        fromMe: true,
+        conversationId: "conv-3",
+        senderId: "user-1",
+        type: "text",
+        content:
+          "Pas de souci 🙂 tu as pu regarder le repo ? J’ai push les dernières modifs.",
+        createdAt: 1710010300000,
+        isRead: true,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-3",
+        senderId: "user-3",
+        type: "image",
+        content: "",
+        images: [
+          {
+            url: "https://picsum.photos/400/600?random=21",
+            caption: "",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=22",
+            caption: "",
+          },
+          {
+            url: "https://picsum.photos/400/600?random=23",
+            caption: "Quelques captures pendant le test",
+          },
+        ],
+        createdAt: 1710010600000,
+        isRead: false,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-3",
+        senderId: "user-3",
+        type: "text",
+        content:
+          "Globalement c’est très propre. J’aime bien la logique des conversations et la séparation text / image. On est clairement proche d’un WhatsApp-like.",
+        createdAt: 1710010900000,
+        isRead: false,
+      },
+    ],
+  },
+
+  {
+    user: {
+      id: "user-4",
+      profil: "https://i.pravatar.cc/150?img=35",
+      name: "Emily Davis",
+      isOnline: true,
+    },
+    messages: [
+      {
+        fromMe: true,
+        conversationId: "conv-4",
+        senderId: "user-1",
+        type: "text",
+        content: "Tu es dispo pour un call rapide ?",
+        createdAt: 1710020000000,
+        isRead: true,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-4",
+        senderId: "user-4",
+        type: "text",
+        content: "Oui dans 5 minutes. Je termine juste un truc et j’arrive.",
+        createdAt: 1710020300000,
+        isRead: true,
+      },
+      {
+        fromMe: false,
+        conversationId: "conv-4",
+        senderId: "user-4",
+        type: "image",
+        content: "",
+        images: [
+          {
+            url: "https://picsum.photos/400/600?random=31",
+            caption:
+              "Au passage, voilà les assets dont je te parlais pour l’écran chat.",
+          },
+        ],
+        createdAt: 1710020600000,
+        isRead: true,
+      },
+    ],
+  },
+];
