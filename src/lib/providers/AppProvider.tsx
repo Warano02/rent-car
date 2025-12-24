@@ -9,7 +9,16 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const AppName = "Ngue"
     const [notifications, setNotifications] = useState(notifs)
 
-    const value = { AppName, notifications }
+
+    const DeleteNotifications = async (notifs: string[]) => {
+        notifs.forEach(notif => {
+            setNotifications(prev => prev.filter(e => e.id !== notif))
+        })
+
+        // send request to the backend
+    }
+
+    const value = { AppName, notifications,DeleteNotifications }
     return (
         <AppContext.Provider value={value}>
             {children}

@@ -40,8 +40,7 @@ const Notifications = () => {
       {selectedId.length && (<View className='flex-row justify-between px-6'>
         <View className='flex-row gap-2 items-center'>
           <Pressable onPress={SelectAll} className={`rounded-full border border-border ${selectedId.length == notifications.length}`} style={{ height: 24, width: 24 }} >
-            {selectedId.length == notifications.length && <MaterialIcons name="check-circle" size={24} color="black" />}
-
+            {selectedId.length == notifications.length && <Text><MaterialIcons name="check-circle" size={24} color="black" /></Text> }
           </Pressable>
 
           <Text className='text-bgTab font-semibold'>All</Text>
@@ -50,7 +49,9 @@ const Notifications = () => {
         </View>
 
         <Pressable onPress={() => setOpenDelete(true)} className='rounded-full border border-border justify-center items-center' style={{ height: 40, width: 40 }}>
-          <MaterialCommunityIcons name="trash-can-outline" size={24} color="#7F7F7F" />
+          <Text>
+            <MaterialCommunityIcons name="trash-can-outline" size={24} color="#7F7F7F" />
+          </Text>
         </Pressable>
       </View>)
       }
@@ -77,7 +78,7 @@ const Notifications = () => {
       />
 
 
-      <DeleteNotifications isVisible={openDelete} setIsVisible={setOpenDelete} />
+      <DeleteNotificationsSheet selectedIds={selectedId} isVisible={openDelete} setIsVisible={setOpenDelete} />
     </View>
   )
 }
@@ -97,11 +98,12 @@ const SingleNotification = ({ icon, onPress, onLongPress, isRead, title, isSelec
   return (
     <Pressable onPress={onPress} onLongPress={onLongPress} delayLongPress={300} className={`flex-row gap-2 my-2 py-2 rounded-lg ${isSelected ? "bg-outlineButtonBg" : isRead ? "bg-outlineButtonBg" : "bg-white px-2"}`} style={{ height: 80 }}>
       <View className='flex-row gap-1 items-center justify-center' style={{ width: 90 }}>
-        {isSelected && <MaterialIcons name="check-circle" size={24} color="black" />}
+        {isSelected && <Text><MaterialIcons name="check-circle" size={24} color="black" /></Text>}
         <View className='justify-center items-center rounded-full border border-border' style={{ height: 44, width: 44 }}>
-          <FontAwesome6 name={icon || "circle-check"} size={24} color="#7F7F7F" />
+          <Text>
+            <FontAwesome6 name={icon || "circle-check"} size={24} color="#7F7F7F" />
+          </Text>
         </View>
-
       </View>
 
       <View className='flex-1 gap-2'>
@@ -127,21 +129,27 @@ const SingleNotification = ({ icon, onPress, onLongPress, isRead, title, isSelec
 
 interface IDeleteNotifs {
   isVisible: boolean,
-  setIsVisible: (e: any) => void
+  setIsVisible: (e: any) => void,
+  selectedIds: string[]
 }
 
-const DeleteNotifications = ({ isVisible, setIsVisible }: IDeleteNotifs) => {
+const DeleteNotificationsSheet = ({ isVisible, setIsVisible, selectedIds }: IDeleteNotifs) => {
+  const { DeleteNotifications } = useApp()
   return (
     <BottomSheet visible={isVisible} setVisible={setIsVisible}>
       <View className='flex-1 justify-center items-center'>
         <View className='bg-white rounded-lg p-4 ' style={{ width: 340, height: 320 }}>
           <Pressable onPress={() => setIsVisible(false)} className=' mb-2'>
-            <Feather name="x" size={24} color="black" />
+            <Text>
+              <Feather name="x" size={24} color="black" />
+            </Text>
           </Pressable>
 
           <View className='flex-1 items-center justify-center'>
             <View className='rounded-full bg-[#CD1B1B] justify-center items-center' style={{ height: 55, width: 55 }}>
-              <Feather name="alert-triangle" size={30} color="white" />
+              <Text>
+                <Feather name="alert-triangle" size={30} color="white" />
+              </Text>
             </View>
           </View>
 
@@ -151,7 +159,7 @@ const DeleteNotifications = ({ isVisible, setIsVisible }: IDeleteNotifs) => {
           </View>
 
           <View className='flex-row gap-2 my-4'>
-            <Pressable className='rounded-lg justify-center items-center border border-border bg-outlineButtonBg' style={{ width: 150, height: 45 }}>
+            <Pressable onPress={() => { DeleteNotifications(selectedIds); setIsVisible(false) }} className='rounded-lg justify-center items-center border border-border bg-outlineButtonBg' style={{ width: 150, height: 45 }}>
               <Text className='font-bold'>Delete</Text>
             </Pressable>
             <Pressable onPress={() => setIsVisible(false)} className='rounded-lg justify-center items-center border border-border bg-bgTab' style={{ width: 150, height: 45 }}>

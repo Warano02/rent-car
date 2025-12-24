@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/(tabs)/profile")
+      router.replace("/(tabs)/notifications")
     }, 2000);
   }, [])
   return (

@@ -1,12 +1,13 @@
 export type Notification = {
-  id:string,
+  id: string;
   title: string;
   containt: string;
   icon?: string;
-  isRead:boolean
+  isRead: boolean;
 };
 
 export interface IAppProviders {
   AppName: string;
   notifications: Notification[];
+  DeleteNotifications: (ids: string[]) => void;
 }
