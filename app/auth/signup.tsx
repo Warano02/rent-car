@@ -2,7 +2,6 @@
 import assets from '@/assets';
 import AuthHeader from '@/components/auth/AuthHeader';
 import Socials from '@/components/auth/Socials';
-import { Button } from '@/components/ui/button';
 import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
@@ -40,13 +39,12 @@ const Signup = () => {
       </View>
 
 
-      {/* List of pressable to controol form */}
       <View className='my-6 gap-2'>
-        <Button className="bg-button rounded-full items-center justify-center p-4">
+        <Pressable className="bg-button rounded-full items-center justify-center p-4">
           <Text className="text-white font-semibold text-xl">
             SignUp
           </Text>
-        </Button>
+        </Pressable>
         {/* <Button onPress={() => router.push("/auth")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-4">
           <Text className="text-black  font-semibold text-xl">
             Login

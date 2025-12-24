@@ -1,9 +1,8 @@
 //Login page 
 import AuthHeader from '@/components/auth/AuthHeader';
-import { Button } from '@/components/ui/button';
 import { Link, useRouter } from 'expo-router';
 import React from 'react';
-import { ScrollView, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 const ForgotPassword = () => {
   const router = useRouter()
@@ -30,11 +29,11 @@ const ForgotPassword = () => {
 
       <View className='my-6 gap-2'>
         {/* @ts-ignore n */}
-        <Button className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications")}>
+        <Pressable className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications")}>
           <Text className="text-white font-semibold text-xl">
             Continue
           </Text>
-        </Button>
+        </Pressable>
 
         <View className='mt-6 flex-row gap-2 justify-center'>
           <Text className='text-[17px] text-center text-secondary'>Return </Text>

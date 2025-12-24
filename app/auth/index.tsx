@@ -2,13 +2,12 @@
 import assets from '@/assets';
 import AuthHeader from '@/components/auth/AuthHeader';
 import Socials from '@/components/auth/Socials';
-import { Button } from '@/components/ui/button';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 const Login = () => {
-  const {  eye } = assets;
+  const { eye } = assets;
   const [checked, setChecked] = useState(false);
   const [isSecure, setIsSecure] = useState(true);
   return (
@@ -21,10 +20,11 @@ const Login = () => {
 
       <View className='gap-2'>
         <View className='border border-border bg-background px-2 mt-2 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
-          <TextInput placeholder='Email/Phone number' className='font-semibold text-xl flex-1' />
+          <TextInput inputMode='text' autoComplete="email" placeholder='Email/Phone number' className='font-semibold text-[14px] flex-1' />
         </View>
+       
         <View className='border border-border bg-background mt-2 flex-row items-center justify-between h-14 pr-4 rounded-xl'>
-          <TextInput className='font-semibold text-2xl flex-1' secureTextEntry={isSecure} />
+          <TextInput className='font-semibold text-[14px] text-black flex-1' secureTextEntry={isSecure} />
           <Pressable onPress={() => setIsSecure((prev) => !prev)}>
             <Image source={eye} resizeMode="contain" className='h-8 w-8' />
           </Pressable>
@@ -47,11 +47,11 @@ const Login = () => {
 
       {/* List of pressable to controol form */}
       <View className='mb-6 gap-2'>
-        <Button className="bg-button rounded-full items-center justify-center p-4">
+        <Pressable className="bg-button rounded-full items-center justify-center p-4">
           <Text className="text-white font-semibold text-xl">
             Log In
           </Text>
-        </Button>
+        </Pressable>
         {/* <Button onPress={() => router.push("/auth/signup")} className="bg-outlineButtonBg border border-button rounded-full items-center justify-center p-4">
           <Text className="text-black  font-semibold text-xl">
             Sign Up

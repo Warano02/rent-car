@@ -6,7 +6,7 @@ const notifs = Array(10).fill('').map((_, idx) => ({ id: "11255" + idx.toString(
 export const AppContext = createContext<IAppProviders | null>(null);
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-    const AppName = "Qent"
+    const AppName = "Ngue"
     const [notifications, setNotifications] = useState(notifs)
 
     const value = { AppName, notifications }

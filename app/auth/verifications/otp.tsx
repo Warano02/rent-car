@@ -1,5 +1,4 @@
 import AuthHeader from '@/components/auth/AuthHeader';
-import { Button } from '@/components/ui/button';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
@@ -78,12 +77,11 @@ const ForgotPassword = () => {
             </View>
 
             <View className='px-6 mb-2'>
-                {/* @ts-ignore is real root mouff */}
-                <Button onPress={()=>router.replace("/main")} disabled={!isComplete} className={`rounded-full p-4 ${isComplete ? 'bg-button' : 'bg-gray'}`}>
+                <Pressable onPress={()=>router.replace("/(tabs)/home")} disabled={!isComplete} className={`rounded-full p-4 ${isComplete ? 'bg-button' : 'bg-gray'} items-center justify-center`}>
                     <Text className='text-white font-semibold text-xl'>
                         Continue
                     </Text>
-                </Button>
+                </Pressable>
             </View>
 
             <View className='mb-4 flex-row gap-2 justify-center'>

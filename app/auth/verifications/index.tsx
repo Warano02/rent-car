@@ -1,7 +1,6 @@
 //Enter the number for sending verifications code to whatsapp
 import AuthHeader from '@/components/auth/AuthHeader';
 import { BottomSheet } from '@/components/BottomSheet';
-import { Button } from '@/components/ui/button';
 import { Link, router } from 'expo-router';
 import React, { useState } from 'react';
 import { FlatList, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
@@ -85,11 +84,11 @@ const EnterNumberForVerification = () => {
             </View>
 
             <View className='my-6 gap-2'>
-                <Button className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications/otp")}>
+                <Pressable className="bg-button rounded-full items-center justify-center p-4" onPress={() => router.push("/auth/verifications/otp")}>
                     <Text className="text-white font-semibold text-xl">
                         Continue
                     </Text>
-                </Button>
+                </Pressable>
 
                 <View className='mt-6 flex-row gap-2 justify-center'>
                     <Text className='text-[17px] text-center text-secondary'>Return </Text>
