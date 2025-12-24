@@ -23,7 +23,9 @@ const Profile = () => {
               <Image source={assets.person} style={{ width: "100%", height: "100%" }} resizeMode='cover' />
             </View>
             <View className='rounded-full border border-border bg-white absolute bottom-0 -right-1 justify-center items-center' style={{ width: 30, height: 30 }}>
-              <Foundation name="camera" size={20} color="#7F7F7F" />
+              <Text>
+                <Foundation name="camera" size={20} color="#7F7F7F" />
+              </Text>
             </View>
           </View>
 
@@ -34,7 +36,7 @@ const Profile = () => {
         </View>
         {/**@ts-ignore is the correct route */}
         <Pressable onPress={() => router.push("/main/settings")} className='gap-2 items-center'>
-          <EvilIcons name="pencil" size={34} color="#7F7F7F" />
+          <Text><EvilIcons name="pencil" size={34} color="#7F7F7F" /></Text>
           <Text className='text-xs text-placeholder'>Edit Profile</Text>
         </Pressable>
 
@@ -47,39 +49,58 @@ const Profile = () => {
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Feather name="heart" size={24} color="#7F7F7F" />
+                <Text>
+                  <Feather name="heart" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Favorite Cars</Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <MaterialIcons name="event-repeat" size={24} color="#7F7F7F" />              </View>
+                <Text>
+                  <MaterialIcons name="event-repeat" size={24} color="#7F7F7F" />
+                </Text>
+              </View>
               <Text className='text-xl text-placeholder'>Previous Rant</Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
           <Pressable onPress={() => router.push("/(tabs)/notifications")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Ionicons name="notifications-outline" size={24} color="#7F7F7F" />
+                <Text>
+                  <Ionicons name="notifications-outline" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Notification</Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push("/main/partner")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <MaterialCommunityIcons name="connection" size={24} color="#7F7F7F" />              </View>
+                <Text>
+                  <MaterialCommunityIcons name="connection" size={24} color="#7F7F7F" />
+                </Text>
+              </View>
               <Text className='text-xl text-placeholder'>Connected to  {AppName} Partnerships </Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
         </View>
@@ -90,54 +111,72 @@ const Profile = () => {
           <Pressable onPress={() => router.push('/main/settings/currency')} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <MaterialIcons name="currency-exchange" size={24} color="#7F7F7F" />
+                <Text>
+                  <MaterialIcons name="currency-exchange" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Currency </Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
           <Pressable onPress={() => router.push("/main/settings/language")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Ionicons name="language" size={24} color="#7F7F7F" />
+                <Text>
+                  <Ionicons name="language" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Language </Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <Fontisto name="persons" size={24} color="#7F7F7F" />
+                <Text>
+                  <Fontisto name="persons" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Invite Friends </Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <MaterialIcons name="privacy-tip" size={24} color="#7F7F7F" />
+                <Text>
+                  <MaterialIcons name="privacy-tip" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Privacy policy </Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
 
           <Pressable className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
-                <AntDesign name="logout" size={24} color="#7F7F7F" />
+                <Text>
+                  <AntDesign name="logout" size={24} color="#7F7F7F" />
+                </Text>
               </View>
               <Text className='text-xl text-placeholder'>Log Out </Text>
             </View>
-            <AntDesign name="right" size={24} color="#7F7F7F" />
+            <Text>
+              <AntDesign name="right" size={24} color="#7F7F7F" />
+            </Text>
           </Pressable>
-
-
         </View>
 
       </ScrollView>
