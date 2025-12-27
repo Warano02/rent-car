@@ -44,7 +44,6 @@ const LocationPicker = ({ isOpen, setIsOpen }: ILocationPicker) => {
                         No results found
                     </Text>
                 )}
-                {/* Results */}
                 <FlatList
                     data={results}
                     keyExtractor={(item) => item.id}

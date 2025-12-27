@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/(tabs)/notifications")
+      router.replace("/(tabs)/search")
     }, 2000);
   }, [])
   return (

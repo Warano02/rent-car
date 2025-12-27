@@ -1,16 +1,30 @@
 import assets, { icons } from '@/assets'
 import Header from '@/components/Header'
+import FilterCars from '@/components/search/FilterCars'
 import TitleSection from '@/components/TitleSection'
 import { useCurrency } from '@/lib/hooks/useCurrency'
 import { useSearchCar } from '@/lib/hooks/useSearchCar'
+import { TCars } from '@/types'
 import { FontAwesome, Ionicons, Octicons } from '@expo/vector-icons'
-import React from 'react'
-import { FlatList, Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Search = () => {
-  const { searchTerm, setSearchTerm } = useSearchCar()
+  const { searchTerm, setSearchTerm, results, loading } = useSearchCar()
+  const [cars, setCars] = useState<TCars[]>([])
+  const [sFilter, setSfilter] = useState(false)
   const insets = useSafeAreaInsets()
+
+  const handleX = () => {
+    if (loading && searchTerm) return setSearchTerm("")
+    setSfilter(true)
+  }
+
+  useEffect(() => {
+    if (loading) return
+    setCars(results)
+  })
   return (
     <View className="flex-1 my-6" style={{ paddingBottom: insets.bottom + 16 }}>
       <Header title="Search" />
@@ -34,20 +48,25 @@ const Search = () => {
         </View>
 
         <View className="w-12 h-12 bg-white border-border items-center justify-center rounded-full">
-          {searchTerm.length ? (
-            <Pressable onPress={() => setSearchTerm("")}>
-              <Octicons name="x" size={20} color="#767676" />
-            </Pressable>
-          ) : (
-            <Image source={icons.sorter} className="h-6 w-6" />
-          )}
+
+          <Pressable onPress={handleX}>
+            {searchTerm && loading ? <Octicons name="x" size={20} color="#767676" /> : <Image source={icons.sorter} className="h-6 w-6" />}
+          </Pressable>
+
         </View>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} className="px-2" contentContainerStyle={{ paddingBottom: 42 }}>
-        {
-          <RecomandCars />
-        }
+      <ScrollView showsVerticalScrollIndicator={false} className="px-2" contentContainerStyle={{ paddingBottom: 42, flexGrow: 1 }}>
+        <View className='flex-1'>
+          {!searchTerm && <RecomandCars />}
+          {loading && (
+            <View className='flex-1 flex-row items-center justify-center gap-2' >
+              <ActivityIndicator />
+              <Text>Searching your car...</Text>
+            </View>
+          )}
+
+        </View>
 
         <View className="mt-4">
           <TitleSection title="Our Popular Cars" link="./main/" />
@@ -65,6 +84,9 @@ const Search = () => {
           />
         </View>
       </ScrollView>
+
+
+      <FilterCars sFilter={sFilter} setSfilter={setSfilter} />
     </View>
   )
 }

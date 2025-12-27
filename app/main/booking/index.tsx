@@ -16,7 +16,7 @@ const BookingDetails = () => {
 
   const { location, date, totalPrice, setBookingUser, bookingUser, bookWDriver, setBookWDriver } = useBooking()
   const { formatAmount } = useCurrency()
-  // setter of the modals
+
   const [openLocationPicker, setOpenLocationPicker] = useState(false)
   const [datePicker, setDatePicker] = useState<IDatePicker>(null)
   return (
@@ -33,7 +33,6 @@ const BookingDetails = () => {
           <Switch s={bookWDriver} setS={setBookWDriver} />
         </View>
 
-        {/* Forms to get user infos  */}
 
         <View className='gap-2 mt-6'>
           <View className='flex-1 bg-white border-gray rounded-lg h-14 flex-row gap-2'>
@@ -56,7 +55,6 @@ const BookingDetails = () => {
           </View>
         </View>
 
-        {/* Gender choose */}
         <View className='mt-6'>
           <Text className='text-xl font-bold my-2'>Gender</Text>
           <View className='flex-row gap-6'>
@@ -71,7 +69,6 @@ const BookingDetails = () => {
           </View>
         </View>
 
-        {/* Rental date & Time */}
         <View className='mt-6'>
           <Text className='text-xl font-bold my-2'>Rental Date & Time</Text>
           <View className='mt-4 border border-border rounded-xl px-4 py-2 flex-row justify-between items-center'>
@@ -97,7 +94,6 @@ const BookingDetails = () => {
           </View>
         </View>
 
-        {/* Car location */}
         <Pressable onPress={() => setOpenLocationPicker(p => !p)}>
           <View className="bg-white border border-border rounded-lg h-14 flex-row items-center px-3 my-6">
             <SimpleLineIcons name="location-pin" size={22} color="#767676" />
@@ -108,11 +104,9 @@ const BookingDetails = () => {
         </Pressable>
       </ScrollView>
 
-      {/* Modals */}
       <LocationPicker isOpen={openLocationPicker} setIsOpen={setOpenLocationPicker} />
       <DatePicker attr={datePicker} setAttr={setDatePicker} />
 
-      {/**Button to next */}
       <Pressable
         disabled={totalPrice === 0}
         onPress={() => router.push("/main/booking/payment")}
