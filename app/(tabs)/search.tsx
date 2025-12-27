@@ -12,7 +12,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Search = () => {
   const { searchTerm, setSearchTerm, results, loading } = useSearchCar()
-  const [cars, setCars] = useState<TCars[]>([])
+  const [cars, setCars] = useState<TCars>([])
   const [sFilter, setSfilter] = useState(false)
   const insets = useSafeAreaInsets()
 
@@ -21,10 +21,17 @@ const Search = () => {
     setSfilter(true)
   }
 
+
+  const clearFilter = () => {
+    setCars(results)
+    setSfilter(false)
+  }
+
   useEffect(() => {
     if (loading) return
     setCars(results)
   })
+
   return (
     <View className="flex-1 my-6" style={{ paddingBottom: insets.bottom + 16 }}>
       <Header title="Search" />
@@ -86,7 +93,7 @@ const Search = () => {
       </ScrollView>
 
 
-      <FilterCars sFilter={sFilter} setSfilter={setSfilter} />
+      <FilterCars clearFilter={clearFilter} sFilter={sFilter} setSfilter={setSfilter} cars={cars} setCars={setCars} />
     </View>
   )
 }

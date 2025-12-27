@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 // for now i fetch the car from the local mock
 export const useSearchCar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<TCars[]>([]);
+  const [results, setResults] = useState<TCars>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchCars = (term: string) => {

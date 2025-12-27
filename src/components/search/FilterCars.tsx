@@ -1,5 +1,5 @@
 import { useLocationSearch } from '@/lib/hooks/useLocationSearch'
-import { TLocation } from '@/types'
+import { TCars, TLocation } from '@/types'
 import { Feather, Ionicons, SimpleLineIcons } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { FlatList, Pressable, Text, TextInput, useWindowDimensions, View } from 'react-native'
@@ -7,18 +7,31 @@ import { BottomSheet } from '../BottomSheet'
 
 interface IFilter {
     sFilter: boolean,
-    setSfilter: (b: boolean) => void
+    setSfilter: (b: boolean) => void,
+    cars: TCars,
+    setCars: (c: TCars) => void,
+    clearFilter: () => void
 }
 
-
-
-const FilterCars = ({ sFilter, setSfilter }: IFilter) => {
+const FilterCars = ({ sFilter, setSfilter, clearFilter, cars, setCars }: IFilter) => {
     const FuelTypes = ["electric", "petrol", "diesel", "hybrid"]
     const [type, setType] = useState<"all" | "regular" | "luxury" | string>("all")
     const [lPicker, setLPicker] = useState(false)
     const [location, setLocation] = useState<TLocation | null>(null)
     const [seats, setSeats] = useState(4)
     const [fuelType, setFuelType] = useState<typeof FuelTypes[number]>(FuelTypes[0])
+
+    const applyFilter = () => {
+        const result = cars.filter(car => {
+            const ft = car.fuelType == fuelType
+            const s = car.features.seats == seats
+            const t = car.type == type
+            return ft && s && t
+        })
+        setCars(result)
+        setSfilter(false)
+    }
+
     return (
         <BottomSheet visible={sFilter} setVisible={setSfilter}>
             <View className='flex-1 mt-6 bg-white rounded-xl py-4 gap-6 '>
@@ -90,11 +103,11 @@ const FilterCars = ({ sFilter, setSfilter }: IFilter) => {
                 </View>
 
                 <View className='flex-row justify-between items-center px-2  border-t border-t-border' style={{ height: 70 }}>
-                    <Pressable className=' rounded-full px-6 py-4 border border-border '>
+                    <Pressable onPress={clearFilter} className=' rounded-full px-6 py-4 border border-border '>
                         <Text className='font-semibold text-placeholder'>Clear All</Text>
                     </Pressable>
 
-                    <Pressable className='rounded-full px-6 py-4 bg-black'>
+                    <Pressable onPress={applyFilter} className='rounded-full px-6 py-4 bg-black'>
                         <Text className='text-white font-bold'>Show 100+ Cars</Text>
                     </Pressable>
                 </View>
