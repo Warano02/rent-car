@@ -30,7 +30,6 @@ export const useLocationSearch = () => {
 
   const fetchLocations = async (text: string) => {
     try {
-        console.log("start searching")
       setLoading(true);
 
       const res = await fetch(
@@ -48,7 +47,6 @@ export const useLocationSearch = () => {
         lat: item.properties.lat,
         lon: item.properties.lon,
       }));
-      console.log(formatted)
 
       setResults(formatted);
     } catch (e) {

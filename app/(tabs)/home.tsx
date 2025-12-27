@@ -4,6 +4,7 @@ import SingleCar from '@/components/car/SingleCar'
 import TitleSection from '@/components/TitleSection'
 import { useApp } from '@/lib/hooks/useApp'
 import { useAuth } from '@/lib/hooks/useAuth'
+import { useBooking } from '@/lib/hooks/useCarBooking'
 import { cars } from '@/lib/mocks/Cars'
 import { Ionicons, Octicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
@@ -18,6 +19,8 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const { notifications } = useApp()
   const router = useRouter()
+  const { SelectCar } = useBooking()
+
   return (
     <View style={{ paddingBottom: 96, paddingTop: insets.top, paddingHorizontal: 4 }}>
       <View className='flex-row justify-between px-6 border-b-[0.5px] border-b-border pb-6'>
@@ -70,14 +73,14 @@ const HomePage = () => {
 
             {
               cars.filter(c => c.isBest).splice(0, 2)
-                .map((car, idx) => <SingleCar key={idx} id={car.id} image={car.images[0]} name={car.name} price={car.price} seats={car.features.seats} rating={car.rating} location={car.location.name} />)
+                  .map((car, idx) => <SingleCar key={idx} id={car.id} image={car.images[0]} name={car.name} price={car.price} seats={car.features.seats} rating={car.rating} location={car.location.name} />)
             }
 
           </View>
 
           <View className='gap-2'>
             <TitleSection title='Nearby' link={"/(tabs)/home"} />
-            <Pressable onPress={() => router.push("/main/car")} className='bg-btnBorder p-6 rounded-lg'>
+            <Pressable onPress={() => {SelectCar("_cars04");router.push("/main/car")}} className='bg-btnBorder p-6 rounded-lg'>
               <Image source={assets.m8} />
             </Pressable>
           </View>

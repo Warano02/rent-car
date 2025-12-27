@@ -1,15 +1,15 @@
-// Search car page
 import assets, { icons } from '@/assets'
 import Header from '@/components/Header'
 import TitleSection from '@/components/TitleSection'
 import { useCurrency } from '@/lib/hooks/useCurrency'
+import { useSearchCar } from '@/lib/hooks/useSearchCar'
 import { FontAwesome, Ionicons, Octicons } from '@expo/vector-icons'
-import React, { useState } from 'react'
+import React from 'react'
 import { FlatList, Image, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Search = () => {
-  const [searchTerm, setSearchTerm] = useState("")
+  const { searchTerm, setSearchTerm } = useSearchCar()
   const insets = useSafeAreaInsets()
   return (
     <View className="flex-1 my-6" style={{ paddingBottom: insets.bottom + 16 }}>
@@ -45,22 +45,9 @@ const Search = () => {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} className="px-2" contentContainerStyle={{ paddingBottom: 42 }}>
-        <View className="flex-row justify-between my-6">
-          <Text className="text-[16px] font-semibold">
-            Recommend For You
-          </Text>
-          <Pressable>
-            <Text className="text-[14px] text-placeholder">View All</Text>
-          </Pressable>
-        </View>
-
-        <View className="flex-row flex-wrap justify-between">
-          {Array(4).fill(null).map((_, index) => (
-            <View key={index} className="mb-4">
-              <SingleCar />
-            </View>
-          ))}
-        </View>
+        {
+          <RecomandCars />
+        }
 
         <View className="mt-4">
           <TitleSection title="Our Popular Cars" link="./main/" />
@@ -87,12 +74,40 @@ interface ISCar {
   isFav?: boolean
 }
 
+const RecomandCars = () => {
+
+  return (
+    <>
+      <View className="flex-row justify-between my-6">
+        <Text className="text-[16px] font-semibold">
+          Recommend For You
+        </Text>
+        <Pressable>
+          <Text className="text-[14px] text-placeholder">View All</Text>
+        </Pressable>
+      </View>
+
+      <View className="flex-row flex-wrap justify-between">
+        {Array(4).fill(null).map((_, index) => (
+          <View key={index} className="mb-4">
+            <SingleCar />
+          </View>
+        ))}
+      </View>
+    </>
+  )
+}
+
 const SingleCar = ({ isFav = false }: ISCar) => {
   const { formatAmount } = useCurrency()
   return (
     <View className='rounded-lg border border-border bg-btnBorder overflow-hidden' style={{ width: 186, height: 265 }}>
       <View className="flex-row  items-end mt-2  px-6 justify-end">
-        <View className={` ${isFav ? "bg-bgTab" : "bg-white"} justify-center items-center rounded-full`} style={{ height: 30, width: 30 }}><FontAwesome name={isFav ? "heart" : "heart-o"} size={18} color={isFav ? "red" : "#767676"} /> </View>
+        <View className={` ${isFav ? "bg-bgTab" : "bg-white"} justify-center items-center rounded-full`} style={{ height: 30, width: 30 }}>
+          <Text>
+            <FontAwesome name={isFav ? "heart" : "heart-o"} size={18} color={isFav ? "red" : "#767676"} />
+          </Text>
+        </View>
       </View>
       <View className='flex-row justify-center items-center'>
         <Image source={assets.white_ferari} style={{ height: 88, width: 186 }} resizeMode="cover" />
@@ -124,7 +139,7 @@ const SingleCar = ({ isFav = false }: ISCar) => {
 
 
 const SinglePopularCar = () => {
-  const {formatAmount}=useCurrency()
+  const { formatAmount } = useCurrency()
   return (
     <View className='rounded-lg items-center px-2 bg-btnBorder flex-row gap-2' style={{ width: 256, height: 90 }}>
       <Image source={assets.white_ferari} style={{ width: 118, height: 70 }} resizeMode='center' />
