@@ -121,7 +121,7 @@ const Brands = () => {
   const [brands, setBrands] = useState<brandType[]>(ListBrands)
   return (
     <View className='mt-2 px-6 my-6'>
-      <Text className='text-2xl font-bold my-2'>Brands  </Text>
+      <Text className='text-2xl font-bold my-2'>Brands</Text>
       <View className='flex-row gap-2 justify-between'>
         {
           brands.map((el, idx) => (

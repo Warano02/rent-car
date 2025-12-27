@@ -1,5 +1,8 @@
+import { useApp } from '@/lib/hooks/useApp';
+import { useBooking } from '@/lib/hooks/useCarBooking';
+import { FontAwesome } from '@expo/vector-icons';
 import React, { useRef, useState } from 'react';
-import { Animated, Dimensions, FlatList, Image, ImageSourcePropType, View } from 'react-native';
+import { Animated, Dimensions, FlatList, Image, ImageSourcePropType, Pressable, View } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -12,8 +15,17 @@ const ImageSlider = ({ images }: { images: ImageSourcePropType[] }) => {
         const index = Math.round(event.nativeEvent.contentOffset.x / width);
         setCurrentIndex(index);
     };
+    const { isFav, toggleFavoriteCar } = useApp()
+    const { details } = useBooking()
     return (
         <View className='bg-btnBorder pb-6'>
+            <View className='flex-end w-full ' style={{ height: 50 }}>
+                <View className="flex-row  items-end mt-2  px-6 justify-end">
+                    <Pressable onPress={() => toggleFavoriteCar(details.id)} className={` ${isFav(details.id) ? "bg-bgTab" : "bg-white"} justify-center items-center rounded-full`} style={{ height: 30, width: 30 }}>
+                        <FontAwesome name={isFav(details.id) ? "heart" : "heart-o"} size={18} color={isFav(details.id) ? "red" : "#767676"} />
+                    </Pressable>
+                </View>
+            </View>
             <FlatList
                 ref={flatListRef}
                 data={images}
@@ -24,7 +36,7 @@ const ImageSlider = ({ images }: { images: ImageSourcePropType[] }) => {
                 renderItem={({ item }) => (
                     <Image
                         source={item}
-                        style={{ width:360, height: 220 }}
+                        style={{ width: 360, height: 220 }}
                         resizeMode="contain"
                     />
                 )}

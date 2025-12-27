@@ -12,7 +12,7 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
     const [dailyPrice, setDailyPrice] = useState(0);
     const [reviews, setReviews] = useState<TReview[]>([])
     const [features, setFutures] = useState<TFeatures>({ seats: 2, parking: "Auto Parking", enginCharge: "250 HP", enginOut: "255", maxSpeed: 250, advance: "" })
-    const [details, setDetails] = useState<TBookingDetails>({ name: "", description: "", images: [] })
+    const [details, setDetails] = useState<TBookingDetails>({id:"", name: "", description: "", images: [] })
     const [renter, setRenter] = useState<TRenter>({ name: "", id: "", profil: assets.person })
     //User infos
     const [location, setLocation] = useState<TLocation | undefined>();
@@ -50,7 +50,7 @@ export const CarBookingProvider = ({ children, }: { children: React.ReactNode; }
             setDailyPrice(car.price)
             setFutures(car.features)
             setReviews(car.reviews)
-            setDetails({ name: car.name, description: car.description, images: car.images })
+            setDetails({id, name: car.name, description: car.description, images: car.images })
             setRenter(car.renter)
             router.push(link || "/main/car")
 

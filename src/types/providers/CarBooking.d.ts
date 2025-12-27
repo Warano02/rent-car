@@ -27,9 +27,10 @@ export type TBookingUser = {
 };
 
 export type TBookingDetails = {
+  id: string;
   name: string;
   description: string;
-  images:ImageSourcePropType[]
+  images: ImageSourcePropType[];
 };
 
 export interface ICarBooking {

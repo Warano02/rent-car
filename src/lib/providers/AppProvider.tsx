@@ -8,7 +8,18 @@ export const AppContext = createContext<IAppProviders | null>(null);
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const AppName = "Ngue"
     const [notifications, setNotifications] = useState(notifs)
+    const [favCar, setFavCar] = useState<string[]>([])
 
+
+    const isFav = (id: string) => favCar.includes(id)
+    const toggleFavoriteCar = (id: string) => {
+        try {
+            setFavCar(prev => favCar.includes(id) ? prev.filter(el => el !== id) : [...prev, id])
+            //request to the backend 
+        } catch (e) {
+            console.log("Error occured while trying to set favorite car ", e)
+        }
+    }
 
     const DeleteNotifications = async (notifs: string[]) => {
         notifs.forEach(notif => {
@@ -18,7 +29,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         // send request to the backend
     }
 
-    const value = { AppName, notifications,DeleteNotifications }
+    const value = { AppName, notifications, isFav, toggleFavoriteCar, favCar, DeleteNotifications }
     return (
         <AppContext.Provider value={value}>
             {children}

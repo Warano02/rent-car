@@ -10,4 +10,7 @@ export interface IAppProviders {
   AppName: string;
   notifications: Notification[];
   DeleteNotifications: (ids: string[]) => void;
+  toggleFavoriteCar: (id: string) => void;
+  favCar: string[];
+  isFav: (id: string) => boolean;
 }
