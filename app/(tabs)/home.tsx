@@ -95,18 +95,18 @@ const HomePage = () => {
 const ListBrands = [
   {
     icon: assets.tesla,
-    name: "Ferrari"
+    name: "Tesla"
   },
   {
-    icon: assets.tesla,
-    name: "Ferrari"
+    icon: assets.lambo,
+    name: "Lambo"
   },
   {
-    icon: assets.tesla,
-    name: "Ferrari"
+    icon: assets.bmw,
+    name: "BMW"
   },
   {
-    icon: assets.tesla,
+    icon: assets.fer,
     name: "Ferrari"
   },
 ]
