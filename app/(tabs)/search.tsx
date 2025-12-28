@@ -154,7 +154,7 @@ interface ISCar {
   cover: ImageSourcePropType
 }
 
-const SingleCar = ({ id, name, price, location, rating, cover }: ISCar) => {
+export const SingleCar = ({ id, name, price, location, rating, cover }: ISCar) => {
   const { formatAmount } = useCurrency()
   const { isFav, toggleFavoriteCar } = useApp()
   const { SelectCar } = useBooking()

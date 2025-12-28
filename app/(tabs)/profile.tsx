@@ -36,7 +36,6 @@ const Profile = () => {
             <Text className='text-placeholder'>{user?.email} </Text>
           </View>
         </View>
-        {/**@ts-ignore is the correct route */}
         <Pressable onPress={() => router.push("/main/settings")} className='gap-2 items-center'>
           <Text><EvilIcons name="pencil" size={34} color="#7F7F7F" /></Text>
           <Text className='text-xs text-placeholder'>Edit Profile</Text>
@@ -48,7 +47,7 @@ const Profile = () => {
         <View className='my-2'>
           <Text className='font-bold text-xl'>General</Text>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push("/main/user/favoriteCars")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
                 <Text>
@@ -62,7 +61,7 @@ const Profile = () => {
             </Text>
           </Pressable>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push("/main/user")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
                 <Text>
