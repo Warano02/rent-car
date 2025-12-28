@@ -9,15 +9,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Notifications = () => {
   const insets = useSafeAreaInsets()
-  const { notifications } = useApp()
+  const { notifications, markNotifAsRead } = useApp()
   const [selectedId, setSelectedId] = useState<string[]>([])
-
-
+  const [reading, setReading] = useState(false)
+  const [notif, setNotif] = useState<{ title: string, contain: string }>({ title: "", contain: "" })
   const [openDelete, setOpenDelete] = useState(false)
 
   const SelectAll = () => selectedId.length == notifications.length ? setSelectedId([]) : setSelectedId(notifications.map(el => el.id))
-
-
 
   const toggleSelect = (id: string) => {
     setSelectedId(prev =>
@@ -29,7 +27,11 @@ const Notifications = () => {
 
   const Click = (id: string) => {
     if (selectedId.length) return toggleSelect(id)
-    //mark as read a implementé
+    const n = notifications.find((e) => e.id == id)
+    if (!n) return
+    setNotif({ title: n.title, contain: n.containt })
+    setReading(true)
+    return markNotifAsRead(id)
   }
 
   return (
@@ -40,7 +42,7 @@ const Notifications = () => {
       {selectedId.length && (<View className='flex-row justify-between px-6'>
         <View className='flex-row gap-2 items-center'>
           <Pressable onPress={SelectAll} className={`rounded-full border border-border ${selectedId.length == notifications.length}`} style={{ height: 24, width: 24 }} >
-            {selectedId.length == notifications.length && <Text><MaterialIcons name="check-circle" size={24} color="black" /></Text> }
+            {selectedId.length == notifications.length && <Text><MaterialIcons name="check-circle" size={24} color="black" /></Text>}
           </Pressable>
 
           <Text className='text-bgTab font-semibold'>All</Text>
@@ -77,7 +79,7 @@ const Notifications = () => {
         )}
       />
 
-
+      <ReadNotification title={notif.title} contain={notif.contain} isReading={reading} setIsReading={setReading} />
       <DeleteNotificationsSheet selectedIds={selectedId} isVisible={openDelete} setIsVisible={setOpenDelete} />
     </View>
   )
@@ -123,6 +125,32 @@ const SingleNotification = ({ icon, onPress, onLongPress, isRead, title, isSelec
       </View>
 
     </Pressable>
+  )
+}
+interface IReadNotif {
+  isReading: boolean
+  setIsReading: (b: boolean) => void,
+  title: string,
+  contain: string
+}
+
+const ReadNotification = ({ isReading, setIsReading, title, contain }: IReadNotif) => {
+  return (
+    <BottomSheet visible={isReading} setVisible={setIsReading}>
+      <View className=' mt-4 bg-white rounded-t-lg py-4 px-2' style={{ width: "100%", height: "40%" }}>
+        <View className=' flex-row items-center' style={{ height: 50 }}>
+          <Pressable onPress={() => setIsReading(false)} className='rounded-full items-center justify-center border border-border' style={{ height: 30, width: 30 }}>
+            <Feather name="x" size={24} color="black" />
+          </Pressable>
+          <Text className='font-bold text-xl text-center flex-1'>{title} </Text>
+        </View>
+        <View className='overflow-scroll flex-1 my-4'>
+          <Text>
+            {contain}
+          </Text>
+        </View>
+      </View>
+    </BottomSheet>
   )
 }
 
@@ -193,5 +221,7 @@ const NoNotification = () => {
     </View>
   )
 }
+
+
 
 export default Notifications

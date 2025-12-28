@@ -13,4 +13,5 @@ export interface IAppProviders {
   toggleFavoriteCar: (id: string) => void;
   favCar: string[];
   isFav: (id: string) => boolean;
+  markNotifAsRead: (id: string) => void;
 }

@@ -25,11 +25,15 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         notifs.forEach(notif => {
             setNotifications(prev => prev.filter(e => e.id !== notif))
         })
-
         // send request to the backend
     }
 
-    const value = { AppName, notifications, isFav, toggleFavoriteCar, favCar, DeleteNotifications }
+    const markNotifAsRead = (id: string) => {
+        setNotifications(prev => prev.map(e => e.id == id ? { ...e, isRead: true } : e))
+        //request the backend
+    }
+
+    const value = { AppName,markNotifAsRead, notifications, isFav, toggleFavoriteCar, favCar, DeleteNotifications }
     return (
         <AppContext.Provider value={value}>
             {children}
