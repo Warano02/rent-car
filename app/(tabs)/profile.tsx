@@ -1,6 +1,7 @@
 import assets from '@/assets'
 import Header from '@/components/Header'
 import { useApp } from '@/lib/hooks/useApp'
+import { useAuth } from '@/lib/hooks/useAuth'
 import { AntDesign, EvilIcons, Feather, Fontisto, Foundation, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import React from 'react'
@@ -10,8 +11,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 const Profile = () => {
   const insets = useSafeAreaInsets()
   const { AppName } = useApp()
-
+  const { user } = useAuth()
   const router = useRouter()
+
   return (
     <View className="flex-1 my-6 " style={{ paddingBottom: insets.bottom + 26 }}>
       <Header title='Profile' />
@@ -19,8 +21,8 @@ const Profile = () => {
       <View className='my-4 flex-row px-6 items-center'>
         <View className='flex-1 flex-row gap-2 items-center'>
           <View className='' style={{ width: 85, height: 85 }}>
-            <View className='rounded-full ' style={{ height: 80, width: 80 }}>
-              <Image source={assets.person} style={{ width: "100%", height: "100%" }} resizeMode='cover' />
+            <View className='rounded-full overflow-hidden relative' style={{ height: 80, width: 80 }}>
+              <Image source={user?.profil ? typeof user?.profil == "string" ? { uri: user.profil } : user?.profil : assets.person} className='rounded-full h-full w-full' resizeMode='cover' />
             </View>
             <View className='rounded-full border border-border bg-white absolute bottom-0 -right-1 justify-center items-center' style={{ width: 30, height: 30 }}>
               <Text>
@@ -30,8 +32,8 @@ const Profile = () => {
           </View>
 
           <View className='gap-2'>
-            <Text className='font-bold'>Felix Warano</Text>
-            <Text className='text-placeholder'>carineteoi@gmail.com</Text>
+            <Text className='font-bold'>{user?.name} </Text>
+            <Text className='text-placeholder'>{user?.email} </Text>
           </View>
         </View>
         {/**@ts-ignore is the correct route */}
@@ -88,14 +90,16 @@ const Profile = () => {
             </Text>
           </Pressable>
 
-          <Pressable onPress={() => router.push("/main/partner")} className='my-2 flex-row items-center'>
+          <Pressable onPress={() => router.push(user?.isPartner ? "/main/partner/details" : "/main/partner")} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
                 <Text>
                   <MaterialCommunityIcons name="connection" size={24} color="#7F7F7F" />
                 </Text>
               </View>
-              <Text className='text-xl text-placeholder'>Connected to  {AppName} Partnerships </Text>
+              <Text className='text-xl text-placeholder'>
+                {user?.isPartner ? "Rent out new car" : `Connected to  ${AppName} Partnerships`}
+              </Text>
             </View>
 
             <Text>
