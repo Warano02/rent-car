@@ -36,7 +36,8 @@ export const icons = {
   vitesse: require("./icons/vitesse.png"),
   sofa: require("./icons/sofa.png"),
   verified:require("./icons/verified.png"),
-  noFav:require("./icons/nofav.png")
+  noFav:require("./icons/nofav.png"),
+  noPrev:require("./icons/noprev.png")
 };
 
 export const persons = {
