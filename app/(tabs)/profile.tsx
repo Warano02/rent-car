@@ -1,11 +1,12 @@
 import assets from '@/assets'
+import { BottomSheet } from '@/components/BottomSheet'
 import Header from '@/components/Header'
 import { useApp } from '@/lib/hooks/useApp'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { AntDesign, EvilIcons, Feather, Fontisto, Foundation, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
-import React from 'react'
-import { Image, Pressable, ScrollView, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { ActivityIndicator, Image, Pressable, ScrollView, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const Profile = () => {
@@ -13,7 +14,7 @@ const Profile = () => {
   const { AppName } = useApp()
   const { user } = useAuth()
   const router = useRouter()
-
+  const [isLogout, setIsLogOut] = useState(false)
   return (
     <View className="flex-1 my-6 " style={{ paddingBottom: insets.bottom + 26 }}>
       <Header title='Profile' />
@@ -167,7 +168,7 @@ const Profile = () => {
             </Text>
           </Pressable>
 
-          <Pressable className='my-2 flex-row items-center'>
+          <Pressable onPress={() => setIsLogOut(true)} className='my-2 flex-row items-center'>
             <View className='flex-1 flex-row gap-2 items-center'>
               <View className='border border-border rounded-full justify-center items-center' style={{ height: 40, width: 40 }}>
                 <Text>
@@ -183,9 +184,60 @@ const Profile = () => {
         </View>
 
       </ScrollView>
-
+      <LogOut isVisible={isLogout} setIsVisible={setIsLogOut} />
     </View>
   )
 }
 
+
+const LogOut = ({ isVisible, setIsVisible }: { isVisible: boolean, setIsVisible: (b: boolean) => void }) => {
+  const { logout } = useAuth()
+  const [loading, setLoading] = useState(false)
+  const Process = () => {
+    setLoading(true)
+    setTimeout(() => {
+      logout()
+    }, 1400);
+  }
+  return (<BottomSheet visible={isVisible} setVisible={setIsVisible}>
+    <View className='flex-1 justify-center items-center'>
+      <View className='bg-white rounded-lg p-4 ' style={{ width: 340, height: 320 }}>
+        <Pressable onPress={() => setIsVisible(false)} className=' mb-2'>
+          <Text>
+            <Feather name="x" size={24} color="black" />
+          </Text>
+        </Pressable>
+
+        <View className='flex-1 items-center justify-center'>
+          <View className='rounded-full bg-[#CD1B1B] justify-center items-center' style={{ height: 55, width: 55 }}>
+            <Text>
+              <Feather name="alert-triangle" size={30} color="white" />
+            </Text>
+          </View>
+        </View>
+
+        <View className='gap-2'>
+          <Text className='text-xl font-bold'>Are you sure you want to Logout?</Text>
+          <Text className='text-[15px] text-placeholder'>
+            By logging out, all login information stored on your device will be deleted, and you will need to log back in the next time you open the application.            </Text>
+        </View>
+
+        <View className='flex-row gap-2 my-4'>
+          <Pressable disabled={loading} onPress={Process} className={`rounded-lg justify-center items-center border border-border ${loading ? "bg-[#CD1B1B]" : "bg-red"}`} style={{ width: 150, height: 45 }}>
+            {
+              !loading ? <Text className='font-bold text-white'>Logout</Text>
+                : <View className='flex-row items-center gap-2'>
+                  <ActivityIndicator color={"#000"} />
+                  <Text className='text-xs text-placeholder'>Pocessing...</Text>
+                </View>
+            }
+          </Pressable>
+          <Pressable onPress={() => setIsVisible(false)} className='rounded-lg justify-center items-center border border-border bg-bgTab' style={{ width: 150, height: 45 }}>
+            <Text className='font-bold text-white'>Cancel</Text>
+          </Pressable>
+        </View>
+      </View>
+    </View>
+  </BottomSheet >)
+}
 export default Profile

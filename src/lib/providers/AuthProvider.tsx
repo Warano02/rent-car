@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React, { createContext, useEffect, useState } from "react";
 import { ImageSourcePropType } from "react-native";
 
@@ -21,7 +22,7 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-
+    const router = useRouter()
     useEffect(() => {
         restoreSession();
     }, []);
@@ -52,6 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     function logout() {
         setUser(null);
+        router.push("/auth")
     }
 
     const value = { user, loading, login, logout }
