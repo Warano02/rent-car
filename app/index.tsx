@@ -7,7 +7,7 @@ export default function Index() {
   useEffect(() => {
     setTimeout(() => {
       /*@ts-ignore */
-      router.replace("/(tabs)/search")
+      router.replace("/welcome")
     }, 2000);
   }, [])
   return (

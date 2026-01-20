@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 name: "Warano",
                 email: "carineteoi@gmail.com",
                 profil: "https://i.ibb.co/rKbXNwg5/Chat-GPT-Image-Jul-24-2025-09-26-56-AM.png",
-                isPartner: true
+                isPartner: false
             })
         } finally {
             setLoading(false);
